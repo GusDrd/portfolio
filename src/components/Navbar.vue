@@ -60,6 +60,12 @@ export default {
     },
     toggleSideView() {
       this.isSideView = !this.isSideView;
+    },
+    disableScroll() {
+      document.body.style.overflow = 'hidden';
+    },
+    enableScroll() {
+      document.body.style.overflow = 'auto';
     }
   },
 
@@ -69,6 +75,16 @@ export default {
     },
     isTablet() {
       return website_stores().getTabletMode;
+    }
+  },
+
+  watch: {
+    isSideView(isViewOn) {
+      if(isViewOn) {
+        this.disableScroll();
+      }else {
+        this.enableScroll();
+      }
     }
   }
 }

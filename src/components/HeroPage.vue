@@ -9,7 +9,7 @@
       </div>
       <img alt="Gus" class="hero-portrait">
     </div>
-    <div class="hero-deco">
+    <div class="hero-deco" :class="{'slide-in': revealMask}">
       <img width="100%" src="@/assets/back-wave.svg">
     </div>
   </div>
@@ -24,9 +24,17 @@ import { website_stores } from '@/store/index.js'
 
 export default {
   name: 'hero-page',
+
+  data() {
+    return {
+      revealMask: false
+    }
+  },
+
   components: {
     NavBar
   },
+
   computed: {
     getDarkMode() {
       return website_stores().getDarkMode;
@@ -34,6 +42,12 @@ export default {
     isTablet() {
       return website_stores().getTabletMode;
     }
+  },
+
+  mounted() {
+    setTimeout(() => {
+      this.revealMask = true;
+    }, 500);
   }
 }
 </script>
@@ -112,6 +126,7 @@ export default {
   .hero-page .hero-deco img {
     height: 200px;
     object-fit: cover;
+    mask: linear-gradient(#000 0 0), linear-gradient(-135deg,#000 50%,#0000 0) content-box 100% 100%/400% 400% no-repeat;
   }
 }
 
@@ -250,12 +265,25 @@ export default {
 
 .hero-deco {
   display: flex;
+  position: relative;
   padding-top: -60px;
+  overflow: hidden;
 }
 
 .hero-deco img {
+  display: block;
   width: 100%;
-  height: 100%;
+  height: auto;
+
+  mask: linear-gradient(#000 0 0), linear-gradient(-135deg,#000 50%,#0000 0) content-box 100% 100%/300% 300% no-repeat;
+  mask-composite: exclude;
+
+  transition: 1.8s cubic-bezier(0.77,0.2,0.05,1.0);
 }
+
+.hero-deco.slide-in img {
+  mask-position: 0% 0%;
+}
+
 
 </style>

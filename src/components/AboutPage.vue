@@ -2,7 +2,7 @@
   <div class="about-page" :class="{'dark-mode': getDarkMode, 'tablet-view': isTablet}" id="about">
     <div class="about-text">
       <h1>About me</h1>
-      <p>I’m a 22 year old French artificial intelligence engineer who loves to eat and eat and eat to become the humaneator, a creature capable of immense power. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <p>I’m a 22 year old French AI engineer who loves learning, imagining, and creating new stuff. I traveled to London to learn about robotics and, later, about artificial intelligence with a focus on the fields of art, music, and games. In my free time I like to play, make music, or fiddle with generative AI models.</p>
     </div>
 
     <div class="sh-section">
@@ -227,7 +227,7 @@ export default {
 }
 .about-page.tablet-view .sh-section {
   height: 324px;
-  margin: 80px 0 80px 160px;
+  margin: 80px 160px 80px 160px;
   padding: 0
 }
 
@@ -240,7 +240,7 @@ export default {
   gap: 40px;
 }
 .about-page.tablet-view .sh-buttons {
-  justify-content: flex-start;
+  justify-content: center;
 }
 
 .sh-buttons button {
@@ -322,7 +322,9 @@ export default {
   display: flex;
   margin: 40px 0 0;
   padding: 0;
-
+}
+.about-page.tablet-view .sh-icons-section {
+  justify-content: center;
 }
 
 .sh-icons {
@@ -333,13 +335,17 @@ export default {
   gap: 40px;
 }
 .about-page.tablet-view .sh-icons {
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: center;
 }
+
 
 .sh-icons-line {
   display: flex;
   gap: 40px;
+}
+.about-page.tablet-view .sh-icons-line {
+  justify-content: center;
 }
 
 .sh-icons-section svg {
@@ -405,13 +411,6 @@ export default {
     height: 22px;
   }
 
-  .about-page.tablet-view .sh-icons-section {
-    justify-content: center;
-  }
-  .about-page.tablet-view .sh-icons {
-    justify-content: center;
-    align-items: center;
-  }
   .about-page.tablet-view .sh-icons-line {
     flex-wrap: wrap;
     justify-content: center;

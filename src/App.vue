@@ -11,24 +11,24 @@
       <h1>My Work</h1>
       <div class="work-cards">
         <WorkCard :name="'muse'" 
-        :tags="['music', 'recommendation', 'clustering', 'deep learning', 'content-based filtering']" 
-        :desc="'Some work about music recommendation yo yeh'" 
+        :tags="['music', 'recommendation', 'deep learning', 'clustering', 'content-based filtering']" 
+        :desc="'Muse is an AI research project investigating content-based music recommendation guided by music provided by users.'" 
         :url="'https://muse.augustindirand.com/'"/>
 
         <WorkCard :name="'undersea explorer'" 
-        :tags="['unity', 'procedural generation', 'cellular automata', 'C#', 'agent behaviour', 'path finding']" 
-        :desc="'Some work in unity yeepi yeh'" 
+        :tags="['unity', 'procedural generation', 'cellular automata', 'games', 'agent behaviour', 'path finding']" 
+        :desc="'A 2D unity game exloring procedural generation and agent behaviours.'" 
         :url="'https://github.com/GusDrd/Undersea-Explorer'"/>
 
         <WorkCard :name="'music tag prediction'" 
-        :tags="['unity', 'procedural generation', 'cellular automata', 'C#', 'agent behaviour', 'path finding']" 
-        :desc="'Some work in unity yeepi yeh'" 
-        :url="'https://github.com/GusDrd/Undersea-Explorer'"/>
+        :tags="['music', 'deep learning', 'MIR', 'mel spectrogram', 'ResNet18', 'GTZAN', 'DEAM']" 
+        :desc="'Work in which different models are trained to learn about music genre and mood.'" 
+        :url="'https://github.com/GusDrd/Genre-Mood-MIR'"/>
 
         <WorkCard :name="'vuse'" 
-        :tags="['unity', 'procedural generation', 'cellular automata', 'C#', 'agent behaviour', 'path finding']" 
-        :desc="'Some work in unity yeepi yeh'" 
-        :url="'https://github.com/GusDrd/Undersea-Explorer'"/>
+        :tags="['music', 'video generation', 'deep learning', 'MIR', 'audio analysis']" 
+        :desc="'Vuse is a work in progress exploring musically synced video generation from sequentially generated images based on audio signal.'" 
+        :url="'https://github.com/GusDrd'"/>
       </div>
     </div>
 
@@ -49,7 +49,6 @@
 
 
 <!-- ============ SCRIPTS ============ -->
-
 <script>
 import HeroPage from '@/components/HeroPage.vue'
 import WorkCard from '@/components/WorkCard.vue'
@@ -183,7 +182,7 @@ body {
 }
 
 
-/* --------------------------- */
+/* -------------------------- */
 /* ------ Footer Deco ------ */
 
 .footer {
@@ -230,8 +229,8 @@ body {
   transition: 200ms;
 }
 
-.footer p:hover span {
-  color: #e31b23;
+.footer:hover p span {
+  color: #e74c3c;
 }
 
 @media screen and (max-width: 775px) and (min-width: 100px) {

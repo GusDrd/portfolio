@@ -143,7 +143,7 @@ export default {
 
   color: #333;
   text-align: left;
-  font-size: 20px;
+  font-size: 24px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -210,11 +210,11 @@ export default {
   justify-content: center;
 
   margin: 0;
-  padding: 0 20px;
+  padding: 5px 15px;
 
   color: #FFFDFA;
   text-align: center;
-  font-size: 16px;
+  font-size: 20px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
@@ -244,9 +244,10 @@ export default {
   }
   .card.tablet-view .back p {
     margin: 20px 40px 0 20px;
+    font-size: 18px;
   }
   .card.tablet-view .back a {
-    font-size: 28px;
+    font-size: 26px;
   }
 
   .card.tablet-view .card-tags {
@@ -254,6 +255,7 @@ export default {
   }
   .card.tablet-view .card-tags p {
     font-size: 14px;
+    padding: 3px 8px;
   }
 }
 

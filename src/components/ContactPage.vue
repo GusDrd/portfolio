@@ -3,7 +3,7 @@
     <div class="contact-text">
       <h1>Contact</h1>
       <h3>If you want to get in touch, feel free to drop me an 
-        <span><a href="" target="_blank">
+        <span><a @click="copyEmail">
             <svg xmlns="http://www.w3.org/2000/svg" width="63" height="50" viewBox="0 0 63 50" fill="#333">
           <path d="M56.25 0H6.25C2.8125 0 0.03125 2.8125 0.03125 6.25L0 43.75C0 47.1875 2.8125 50 6.25 50H56.25C59.6875 50 62.5 47.1875 62.5 43.75V6.25C62.5 2.8125 59.6875 0 56.25 0ZM55 13.2812L32.9062 27.0938C31.9062 27.7188 30.5938 27.7188 29.5938 27.0938L7.5 13.2812C7.18665 13.1053 6.91225 12.8677 6.6934 12.5827C6.47456 12.2976 6.31582 11.9712 6.2268 11.623C6.13778 11.2749 6.12032 10.9123 6.17549 10.5572C6.23066 10.2021 6.3573 9.86192 6.54776 9.55719C6.73821 9.25246 6.98851 8.98955 7.28352 8.78436C7.57853 8.57917 7.9121 8.43597 8.26405 8.36343C8.616 8.29089 8.97901 8.29052 9.33111 8.36234C9.68321 8.43415 10.0171 8.57667 10.3125 8.78125L31.25 21.875L52.1875 8.78125C52.4829 8.57667 52.8168 8.43415 53.1689 8.36234C53.521 8.29052 53.884 8.29089 54.236 8.36343C54.5879 8.43597 54.9215 8.57917 55.2165 8.78436C55.5115 8.98955 55.7618 9.25246 55.9522 9.55719C56.1427 9.86192 56.2693 10.2021 56.3245 10.5572C56.3797 10.9123 56.3622 11.2749 56.2732 11.623C56.1842 11.9712 56.0254 12.2976 55.8066 12.5827C55.5878 12.8677 55.3134 13.1053 55 13.2812Z"/>
           </svg></a>
@@ -35,6 +35,18 @@ export default {
     },
     isTablet() {
       return website_stores().getTabletMode;
+    }
+  },
+  methods: {
+    copyEmail() {
+      const email = 'dirandaugustin@gmail.com';
+      navigator.clipboard.writeText(email)
+        .then(() => {
+          alert(`Email ${email} copied to clipboard!`);
+        })
+        .catch((error) => {
+          console.error('Error copying to clipboard:', error);
+        });
     }
   }
 }
@@ -103,6 +115,8 @@ export default {
 }
 
 .contact-text span svg {
+  cursor: pointer;
+  pointer-events: auto;
   vertical-align: -10%;
 
   transition: 200ms;

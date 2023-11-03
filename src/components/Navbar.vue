@@ -163,8 +163,8 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 40px;
-  margin: 220px 0;
+  gap: 80px;
+  margin: 240px 0;
 }
 .menu-links a {
   font-weight: 600;
@@ -219,7 +219,8 @@ export default {
   }
 
   .tablet-bar .menu-links {
-    margin: 160px 0;
+    margin: 120px 0;
+    gap: 60px;
   }
 }
 

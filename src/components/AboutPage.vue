@@ -2,7 +2,7 @@
   <div class="about-page" :class="{'dark-mode': getDarkMode, 'tablet-view': isTablet}" id="about">
     <div class="about-text">
       <h1>About me</h1>
-      <p>I’m a 22 year old French AI engineer who loves learning, imagining, and creating new stuff. I traveled to London to learn about robotics and, later, about artificial intelligence with a focus on the fields of art, music, and games. In my free time I like to play, make music, or fiddle with generative AI models.</p>
+      <p>I’m a 22 year old French AI engineer who loves learning, imagining, and creating new stuff. I traveled to London to learn about robotics and, later, about artificial intelligence with a focus on the fields of art, music, and games. In my free time I like to play, make music, or fiddle with recent AI models.</p>
     </div>
 
     <div class="sh-section">

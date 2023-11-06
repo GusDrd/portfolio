@@ -25,10 +25,18 @@
         :desc="'Work in which different models are trained to learn about music genre and mood.'" 
         :url="'https://github.com/GusDrd/Genre-Mood-MIR'"/>
 
+        <WorkCard :name="'portfolio'" 
+        :tags="['vue.js', 'front-end', 'web design', 'figma', 'responsive design']" 
+        :desc="'This portfolio website gave me an opportunity to learn about figma design and test my skills in front-end development.'" 
+        :url="'https://github.com/GusDrd/portfolio'"/>
+
+        <!--
         <WorkCard :name="'vuse'" 
         :tags="['music', 'video generation', 'deep learning', 'MIR', 'audio analysis']" 
         :desc="'Vuse is a work in progress exploring musically synced video generation from sequentially generated images based on audio signal.'" 
         :url="'https://github.com/GusDrd'"/>
+        -->
+
       </div>
     </div>
 

@@ -59,11 +59,11 @@ export default {
 .contact-page {
   align-self: stretch;
 
-  background: linear-gradient(180deg, #BABAFF 0%, rgba(255, 253, 250, 0.00) 100%);
+  background: linear-gradient(180deg, #BABAFF -50%, rgba(255, 253, 250, 0.00) 100%);
 }
 
 .contact-page.dark-mode {
-  background: linear-gradient(180deg, #575469 0%, rgba(255, 253, 250, 0.00) 100%);
+  background: linear-gradient(180deg, #575469 -50%, rgba(255, 253, 250, 0.00) 100%);
 }
 
 .contact-text {

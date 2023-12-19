@@ -5,7 +5,7 @@
       <div class="hero-text">
         <h1>Hi, I'm <span>Gus</span></h1>
         <p>I’m a French, artificial intelligence engineer with a passion for games, music, and art.</p>
-        <a href="#about" class="hero-about" v-smooth-scroll>about me</a>
+        <a href="#about" class="hero-about" v-smooth-scroll>learn more</a>
       </div>
       <img alt="Gus" class="hero-portrait">
     </div>

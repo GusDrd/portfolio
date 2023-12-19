@@ -31,9 +31,9 @@
         :url="'https://github.com/GusDrd/portfolio'"/>
 
         <!--
-        <WorkCard :name="'vuse'" 
-        :tags="['music', 'video generation', 'deep learning', 'MIR', 'audio analysis']" 
-        :desc="'Vuse is a work in progress exploring musically synced video generation from sequentially generated images based on audio signal.'" 
+        <WorkCard :name="'echoes'" 
+        :tags="['UE5', 'procedural generation', 'agent behaviour', 'multiplayer', 'proximity audio management']" 
+        :desc="'Echoes is a UE5 multiplayer game in the makings. It features a proximity audio system that can impact complex agent behaviours.'" 
         :url="'https://github.com/GusDrd'"/>
         -->
 

@@ -3,14 +3,31 @@
     <NavBar />
     <div class="hero-content" :class="{'dark-mode': getDarkMode, 'tablet-view': isTablet}">
       <div class="hero-text">
-        <h1>Hi, I'm <span>Gus</span></h1>
-        <p>I’m a French, artificial intelligence engineer with a passion for games, music, and art.</p>
+        <h1>Hi !&nbsp;&nbsp;I'm <span>Gus</span></h1>
+        <p>French AI Engineer &amp; Data Scientist passionate about bridging technology, creativity, and problem-solving. I specialize in building intelligent systems, optimizing data-driven solutions, and exploring the intersection of AI, games, and art.</p>
+        <div class="hero-links">
+          <a href="https://github.com/GusDrd" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+              <path fill="#505059" d="M12 0c-1.576 0-3.136.318-4.592.936a11.985 11.985 0 0 0-3.893 2.666C1.265 5.908 0 9.036 0 12.298c0 5.436 3.444 10.047 8.208 11.683.6.098.792-.283.792-.615v-2.078c-3.324.738-4.032-1.648-4.032-1.648-.552-1.427-1.332-1.808-1.332-1.808-1.092-.762.084-.738.084-.738 1.2.086 1.836 1.267 1.836 1.267 1.044 1.87 2.808 1.316 3.492 1.02.108-.799.42-1.34.756-1.647-2.664-.308-5.46-1.366-5.46-6.051 0-1.365.456-2.46 1.236-3.333-.12-.307-.54-1.586.12-3.246 0 0 1.008-.332 3.3 1.254a11.05 11.05 0 0 1 3-.406c1.02 0 2.052.135 3 .406 2.292-1.586 3.3-1.254 3.3-1.254.66 1.66.24 2.939.12 3.246.78.873 1.236 1.968 1.236 3.333 0 4.698-2.808 5.73-5.484 6.038.432.381.828 1.132.828 2.275v3.37c0 .332.192.726.804.615C20.568 22.333 24 17.734 24 12.298c0-1.615-.31-3.214-.913-4.706a12.324 12.324 0 0 0-2.602-3.99A11.985 11.985 0 0 0 16.592.936 11.748 11.748 0 0 0 12 0Z"/>
+            </svg>
+          </a>
+          <a href="https://www.linkedin.com/in/augustin-dirand-a38918213" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+              <path fill="#505059" d="M0 1.719C0 .769.789 0 1.762 0h20.476C23.21 0 24 .77 24 1.719v20.562c0 .95-.789 1.719-1.762 1.719H1.762C.79 24 0 23.23 0 22.281V1.719Zm7.415 18.372V9.253H3.813v10.838h3.602Zm-1.8-12.318c1.255 0 2.037-.831 2.037-1.872-.023-1.063-.78-1.872-2.014-1.872-1.232 0-2.038.81-2.038 1.872 0 1.041.781 1.872 1.99 1.872h.024Zm7.361 12.318v-6.053c0-.324.024-.648.12-.879.26-.646.852-1.317 1.848-1.317 1.304 0 1.824.993 1.824 2.451v5.798h3.602v-6.216c0-3.33-1.776-4.878-4.146-4.878-1.911 0-2.768 1.05-3.248 1.79v.037h-.024l.024-.037V9.252h-3.6c.046 1.018 0 10.838 0 10.838h3.6Z"/>
+            </svg>
+          </a>
+          <a href="mailto:dirandaugustin@gmail.com">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="24" fill="none" viewBox="0 0 30 24">
+              <path fill="#505059" d="M30 3c0-1.65-1.35-3-3-3H3C1.35 0 0 1.35 0 3v18c0 1.65 1.35 3 3 3h24c1.65 0 3-1.35 3-3V3Zm-3 0-12 7.5L3 3h24Zm0 18H3V6l12 7.5L27 6v15Z"/>
+            </svg>
+          </a>
+        </div>
         <a href="#about" class="hero-about" v-smooth-scroll>learn more</a>
       </div>
-      <img alt="Gus" class="hero-portrait">
+      <div aria-label="Gus" role="img" decoding="async" class="hero-portrait" sizes="100vw" />
     </div>
     <div class="hero-deco" :class="{'slide-in': revealMask}">
-      <img width="100%" src="@/assets/back-wave.svg">
+      <img width="100%" src="@/assets/back_wave.svg">
     </div>
   </div>
 </template>
@@ -57,8 +74,7 @@ export default {
 <style scoped>
 
 .hero-page {
-  flex: 1 0 0;
-  align-self: stretch;
+  width: 100%
 }
 
 /* ----------------------------- */
@@ -66,93 +82,39 @@ export default {
 
 .hero-content {
   display: flex;
-  justify-content: center;
-}
+  padding-top: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
 
-.hero-content.tablet-view {
-  display: flex;
-  align-content: center;
-  justify-content: center;
-  flex-direction: column;
-}
-.hero-content.tablet-view .hero-portrait {
-  margin: 40px auto 0;
-}
-.hero-content.tablet-view .hero-text {
-  display: flex;
-  margin: 0 auto;
-}
-.hero-content.tablet-view .hero-text h1 {
-  text-align: left;
-  margin: 0;
-}
-.hero-content.tablet-view .hero-text p {
-  text-align: left;
-}
-.hero-content.tablet-view .hero-about {
-  text-align: left;
-  margin: 20px 0 0;
-}
+  margin-left: auto;
+  margin-right: auto;
 
-@media screen and (max-width: 775px) and (min-width: 100px) {
-  .hero-content.tablet-view .hero-text {
-    width: 300px;
-  }
-  .hero-content.tablet-view .hero-portrait {
-    width: 300px;
-    height: 300px;
-    background: url("@/assets/portrait.jpg") #EEEEFF -119.33px 0px / 150.638% 100% no-repeat;
-  }
-
-  .hero-content.tablet-view .hero-text h1 {
-    font-size: 50px;
-    font-weight: bold;
-    margin-bottom: 0;
-  }
-  .hero-content.tablet-view .hero-text span {
-    font-size: 50px;
-    font-weight: bold;
-  }
-  .hero-content.tablet-view .hero-text p {
-    font-size: 24px;
-    margin-top: 40px;
-  }
-  .hero-content.tablet-view .hero-about {
-    font-size: 22px;
-    margin-top: 30px;
-    padding: 0;
-  }
-
-  .hero-page .hero-deco img {
-    height: 200px;
-    object-fit: cover;
-    mask: linear-gradient(#000 0 0), linear-gradient(-135deg,#000 50%,#0000 0) content-box 100% 100%/400% 400% no-repeat;
-  }
+  max-width: 64rem;
+  justify-content: space-between;
 }
 
 .hero-portrait {
-  width: 480px;
-  height: 480px;
-  flex-shrink: 0;
-  margin-left: 20px;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  max-width: 400px;
+  aspect-ratio: 1 / 1;
 
-  border-radius: 482px;
-  border: 5px solid #333;
-  background: url("@/assets/portrait.jpg") #EEEEFF -189.33px 0px / 150.638% 100% no-repeat;
+  object-fit: cover;
+  object-position: center;
+  align-self: center;
 
-  transition: 0.5s;
-  -webkit-transition: 0.5s;
-}
+  border-radius: 50%;
+  background: url("@/assets/portrait_original.jpg") #EEEEFF 80% center / 150.638% 100% no-repeat;
 
-.hero-content.dark-mode .hero-portrait {
-  border: 5px solid #FFFDFA;
+  transition: 200ms;
 }
 
 .hero-text {
   display: flex;
   flex-flow: column;
   justify-content: center;
-  width: 600px;
+  width: 35rem;
   flex-shrink: 0;
 }
 
@@ -160,104 +122,103 @@ export default {
   width: 100%;
   height: auto;
   flex-shrink: 0;
-  margin: 0 0 0 20px;
+  margin: 0 0 0 0;
 
-  color: #333;
-  text-align: right;
-  font-size: 100px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-
-  transition: 0.5s;
-  -webkit-transition: 0.5s;
+  color: #131316;
+  text-align: left;
+  font-size: 3rem;
+  font-style: medium;
+  line-height: 1;
 }
-
 .hero-content.dark-mode .hero-text h1 {
-  color: #FFFDFA;
+  color: #FFFFFF;
 }
 
 .hero-text span {
-  font-size: 100px;
+  font-size: 3rem;
   font-style: normal;
   font-weight: 600;
-  line-height: normal;
-  color: #7F7DFF;
-
-  background: linear-gradient(78.8deg, #7DE8FF 3.08%, #7F7DFF 50.03%, #ED7DFF 89.52%);
-  background-clip: text;
-  -webkit-background-clip: text;
-
-  transition: all 0.2s;
-  -webkit-transition: all 0.2s;
+  line-height: 1;
+  color: #5F5CFF;
 }
-
-.hero-text span:hover,
-.hero-text span:active {
-  color: transparent;
+.hero-content.dark-mode .hero-text span {
+  color: #8D8CFF;
 }
 
 .hero-text p {
+  margin: 0;
+  margin-top: 1.5rem;
+  
   width: 100%;
-  height: 154.915px;
-  flex-shrink: 0;
-  margin: 0 0 0;
-  margin-top: 20px;
+  word-wrap: break-word;
 
-  color: #333;
-  text-align: right;
-  font-size: 35px;
+  color: #505059;
+  font-size: 1.5rem;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-
-  transition: 0.5s;
-  -webkit-transition: 0.5s;
+}
+.hero-content.dark-mode .hero-text p {
+  color: #F1F1F1;
 }
 
-.hero-content.dark-mode .hero-text p {
-  color: #FFFDFA;
+.hero-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+
+  margin-top: 1.5rem;
+}
+
+.hero-links svg path {
+  align-items: center;
+  display: inline-flex;
+
+  transition: 200ms;
+}
+.hero-links a:hover path {
+  fill: #5F5CFF;
+}
+.hero-content.dark-mode .hero-links a path {
+  fill: #F1F1F1;
+}
+.hero-content.dark-mode .hero-links a:hover path {
+  fill: #8D8CFF;
 }
 
 .hero-about {
   display: flex;
-  width: 210px;
-  height: 60px;
-  padding: 4px 15px;
-  margin-right: -20px;
-  margin-left: auto;
-  margin-top: 20px;
+  width: 10rem;
+  height: 2.5rem;
+
+  padding: .25rem .5rem;
+  margin-top: 1.5rem;
   justify-content: center;
   align-items: center;
   gap: 10px;
   flex-shrink: 0;
   z-index: 1;
 
-  border-radius: 40px;
-  border: 2px solid #7F7DFF;
+  border-radius: 30px;
+  background-color: #5F5CFF;
 
-  color: #7F7DFF;
-  font-size: 23px;
+  color: #FFFFFF;
+  font-size: 1rem;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   text-decoration: none;
 
-  transition: 200ms;
-  -webkit-transition: 200ms;
+  transition-duration: 200ms;
 }
-
 .hero-about:hover {
-  border-radius: 40px;
-  border: 2px solid #7F7DFF;
-  background: #7F7DFF;
-
-  color: #FFFDFA;
-  text-align: center;
-  font-size: 23px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
+  background-color: #524fef;
+}
+.hero-content.dark-mode .hero-about {
+  background-color: #8D8CFF;
+}
+.hero-content.dark-mode .hero-about:hover {
+  background-color: #7674f1;
 }
 
 /* -------------------------- */
@@ -285,5 +246,46 @@ export default {
   mask-position: 0% 0%;
 }
 
+@media screen and (max-width: 800px) and (min-width: 100px) {
+  .hero-deco img {
+  height: 200px;
+  object-fit: cover;
+}
+}
+
+/* -------------------------- */
+/* ------- PHONE VIEW ------- */
+
+.hero-content.tablet-view {
+  padding-left: 2rem;
+  padding-right: 2rem;
+  max-width: 35rem;
+
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.hero-content.tablet-view .hero-text {
+  width: auto;
+  flex-shrink: 1;
+}
+
+.hero-content.tablet-view .hero-portrait {
+  display: flex;
+  align-self: center;
+
+  width: 300px;
+  height: 300px;
+}
+
+@media screen and (max-width: 400px) and (min-width: 100px) {
+
+  .hero-text .hero-links {
+    align-self: center;
+  }
+  .hero-text .hero-about {
+    align-self: center;
+  }
+}
 
 </style>

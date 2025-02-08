@@ -1,19 +1,12 @@
 <template>
-  <div class="card" :class="{'tablet-view': isTablet}" ref="card" @touchstart="handleTouchStart" @touchend="handleTouchEnd">
-    <div class="content" :class="{'dark-mode': getDarkMode}">
-      <div class="front">
-        <h3 :key="name">{{name}}</h3>
-        <div class="card-tags">
-          <p v-for="tag in tags" :key="tag">{{tag}}</p>
-        </div>
-      </div>
-      <div class="back">
-        <h3 :key="name">{{name}}</h3>
-        <p :key="desc">{{desc}}</p>
-        <a :href="url" target="_blank">see more <span>&#8600;</span></a>
-      </div>
+  <a :href="url" target="_blank" class="card" :class="{'tablet-view': isTablet, 'dark-mode': getDarkMode}">
+    <img :src="resolvedSvgPath" />
+    <div class="content">
+      <h3 :key="name">{{name}}</h3>
+      <p>{{desc}}</p>
+      <a :href="url" target="_blank">{{url_name}}</a>
     </div>
-  </div>
+  </a>
 </template>
 
 
@@ -25,8 +18,9 @@ export default {
   name: 'work-card',
   props: {
     name: String,
-    tags: Array,
     desc: String,
+    svg_path: String,
+    url_name: String,
     url: String
   },
   computed: {
@@ -35,14 +29,9 @@ export default {
     },
     isTablet() {
       return website_stores().getTabletMode;
-    }
-  },
-  methods: {
-    handleTouchStart() {
-      this.$refs.card.classList.add('active');
     },
-    handleTouchEnd() {
-      this.$refs.card.classList.remove('active');
+    resolvedSvgPath() {
+      return require(`@/assets/icons/${this.svg_path}`);
     }
   }
 }
@@ -55,207 +44,119 @@ export default {
 .card {
   position: relative;
   display: flex;
-  width: 400px;
-  height: 400px;
-  flex-direction: column;
-  align-items: flex-start;
-  flex-shrink: 0;
+  width: 24.27rem;
+  height: 15rem;
+
+  text-decoration: none;
+
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .1);
+  border-radius: 30px;
+
+  background-color: rgba(255, 255, 255, .5);
+
+  transition: all .3s cubic-bezier(0,0,.5,1);
+}
+.card.dark-mode {
+  background-color: #2b2b2b;
+}
+
+.card:hover {
+  box-shadow: 2px 4px 16px rgba(0, 0, 0, .15);
+  transform: scale3d(1.01, 1.01, 1.01);
+}
+
+.card img {
+  width: 64px;
+  height: 64px;
+
+  margin: 2rem;
+
+  transition: 200ms;
 }
 
 .content {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  box-shadow: 0 0 15px rgba(51, 51, 51, 0.08);
-
-  transition: transform 1s;
-  transform-style: preserve-3d;
-}
-
-.content.dark-mode {
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
-}
-
-.card:hover .content, .card:active .content{
-  transform: rotateY(180deg);
-  transition: transform 0.5s;
-}
-
-.front, 
-.back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-
-  border-radius: 10px;
-  background: #FFFDFA;
-}
-
-.content.dark-mode .front,
-.content.dark-mode .back{
-  background: #66618d;
-}
-
-.content.dark-mode .back {
-  background: #4c486b;
-}
-
-.back {
-  background: #EEF;
-  transform: rotateY(180deg);
-}
-
-.front h3 {
   display: flex;
-
-  color: #333;
-  text-align: left;
-  font-size: 50px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 1.05;
-
-  margin: 40px 0 0 40px;
-}
-
-.content.dark-mode .front h3 {
-  color: #FFFDFA;
-}
-
-.back h3 {
-  display: flex;
-
-  color: #333;
-  text-align: left;
-  font-size: 50px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 1.05;
-
-  margin: 40px 0 0 40px;
-}
-
-.back p {
-  position: absolute;
-  display: flex;
-  width: auto;
-
-  color: #333;
-  text-align: left;
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-
-  margin: 40px 40px 0 40px;
-}
-
-.back a {
-  position: absolute;
-  width: 100%;
-  text-align: center;
-  bottom: 0;
-  margin: 0 0 40px;
-
-  color: #333;
-  text-decoration: none;
-  font-size: 30px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-
-  transition: 0.2s;
-  -webkit-transition: 0.2s;
-}
-
-.content.dark-mode .back h3,
-.content.dark-mode .back p {
-  color: #FFFDFA;
-}
-.content.dark-mode .back a {
-  color: #FFFDFA;
-
-  transition: 0.2s;
-  -webkit-transition: 0.2s;
-}
-
-.back a:hover,
-.content.dark-mode .back a:hover {
-  color: #7F7DFF;
-}
-
-.back span {
-  font-family: Calibri;
-}
-
-.card-tags {
-  position: absolute;
-  display: flex;
-  width: auto;
-  align-items: flex-end;
-  align-content: flex-start;
-  gap: 10px;
-  flex-wrap: wrap;
-
-  bottom: 0;
-  margin: 0 40px 40px 40px;
-}
-
-.card-tags p {
-  display: flex;
-  width: auto;
-  height: 25px;
   flex-direction: column;
+
+  margin-right: 2rem;
+  margin-bottom: 2rem;
+}
+
+.content h3 {
+  font-size: 2rem;
+  line-height: .9;
+  color: #131316;
+
+  margin-top: 2rem;
+  margin-bottom: 0;
+}
+.card.dark-mode .content h3 {
+  color: #FFFFFF;
+}
+
+.content p {
+  font-size: 1rem;
+  color: #505059;
+
+  margin-top: .5rem;
+  margin-bottom: 1rem;
+}
+.card.dark-mode .content p {
+  color: #F1F1F1;
+}
+
+.content a {
+  display: flex;
+  width: auto;
+
   justify-content: center;
+  align-items: center;
+  align-self: flex-start;
 
-  margin: 0;
-  padding: 5px 15px;
+  margin-top: auto;
+  padding: .5rem 1rem;
 
-  color: #FFFDFA;
-  text-align: center;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
+  color: #FFFFFF;
+  text-decoration: none;
 
-  border-radius: 5px;
-  background: #7F7DFF;
+  border-radius: 30px;
+  background-color: #5F5CFF;
+
+  transition: background-color 0.2s ease;
+}
+.card.dark-mode .content a {
+  background-color: #8D8CFF;
 }
 
-.content.dark-mode .card-tags p {
-  color: #333;
-  background: #EEF;
+.content a:hover {
+  background-color: #524fef;
+}
+.card.dark-mode .content a:hover {
+  background-color: #7674f1;
 }
 
-@media screen and (max-width: 775px) and (min-width: 100px) {
-  .card.tablet-view {
-    width: 300px;
-    height: 300px;
+
+@media screen and (max-width: 500px) and (min-width: 100px) {
+  .card {
+    width: 100%;
+    height: 50%;
   }
 
-  .card.tablet-view .front h3 {
-    margin: 20px 0 0 20px;
-    font-size: 40px;
-  }
-  .card.tablet-view .back h3 {
-    margin: 20px 0 0 20px;
-    font-size: 40px;
-  }
-  .card.tablet-view .back p {
-    margin: 20px 40px 0 20px;
-    font-size: 18px;
-  }
-  .card.tablet-view .back a {
-    font-size: 26px;
+  .card img {
+    width: 48px;
+    height: 48px;
+
+    margin: 1.5rem;
   }
 
-  .card.tablet-view .card-tags {
-    margin: 0 20px 20px 20px;
+  .content {
+    margin-right: 1.5rem;
+    margin-bottom: 1.5rem;
   }
-  .card.tablet-view .card-tags p {
-    font-size: 14px;
-    padding: 3px 8px;
+
+  .content h3 {
+    margin-top: 1.5rem;
+    margin-bottom: 0;
   }
 }
 

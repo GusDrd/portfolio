@@ -6,17 +6,17 @@
         <h1>Hi !&nbsp;&nbsp;I'm <span>Gus</span></h1>
         <p>French AI Engineer &amp; Data Scientist passionate about bridging technology, creativity, and problem-solving. I specialize in building intelligent systems, optimizing data-driven solutions, and exploring the intersection of AI, games, and art.</p>
         <div class="hero-links">
-          <a href="https://github.com/GusDrd" target="_blank">
+          <a href="https://github.com/GusDrd" target="_blank"  aria-label="Checkout my github profile">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
               <path fill="#505059" d="M12 0c-1.576 0-3.136.318-4.592.936a11.985 11.985 0 0 0-3.893 2.666C1.265 5.908 0 9.036 0 12.298c0 5.436 3.444 10.047 8.208 11.683.6.098.792-.283.792-.615v-2.078c-3.324.738-4.032-1.648-4.032-1.648-.552-1.427-1.332-1.808-1.332-1.808-1.092-.762.084-.738.084-.738 1.2.086 1.836 1.267 1.836 1.267 1.044 1.87 2.808 1.316 3.492 1.02.108-.799.42-1.34.756-1.647-2.664-.308-5.46-1.366-5.46-6.051 0-1.365.456-2.46 1.236-3.333-.12-.307-.54-1.586.12-3.246 0 0 1.008-.332 3.3 1.254a11.05 11.05 0 0 1 3-.406c1.02 0 2.052.135 3 .406 2.292-1.586 3.3-1.254 3.3-1.254.66 1.66.24 2.939.12 3.246.78.873 1.236 1.968 1.236 3.333 0 4.698-2.808 5.73-5.484 6.038.432.381.828 1.132.828 2.275v3.37c0 .332.192.726.804.615C20.568 22.333 24 17.734 24 12.298c0-1.615-.31-3.214-.913-4.706a12.324 12.324 0 0 0-2.602-3.99A11.985 11.985 0 0 0 16.592.936 11.748 11.748 0 0 0 12 0Z"/>
             </svg>
           </a>
-          <a href="https://www.linkedin.com/in/augustin-dirand-a38918213" target="_blank">
+          <a href="https://www.linkedin.com/in/augustin-dirand-a38918213" target="_blank" aria-label="Visit my linkedin profile">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
               <path fill="#505059" d="M0 1.719C0 .769.789 0 1.762 0h20.476C23.21 0 24 .77 24 1.719v20.562c0 .95-.789 1.719-1.762 1.719H1.762C.79 24 0 23.23 0 22.281V1.719Zm7.415 18.372V9.253H3.813v10.838h3.602Zm-1.8-12.318c1.255 0 2.037-.831 2.037-1.872-.023-1.063-.78-1.872-2.014-1.872-1.232 0-2.038.81-2.038 1.872 0 1.041.781 1.872 1.99 1.872h.024Zm7.361 12.318v-6.053c0-.324.024-.648.12-.879.26-.646.852-1.317 1.848-1.317 1.304 0 1.824.993 1.824 2.451v5.798h3.602v-6.216c0-3.33-1.776-4.878-4.146-4.878-1.911 0-2.768 1.05-3.248 1.79v.037h-.024l.024-.037V9.252h-3.6c.046 1.018 0 10.838 0 10.838h3.6Z"/>
             </svg>
           </a>
-          <a href="mailto:dirandaugustin@gmail.com">
+          <a href="mailto:dirandaugustin@gmail.com" aria-label="Send me an email">
             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="24" fill="none" viewBox="0 0 30 24">
               <path fill="#505059" d="M30 3c0-1.65-1.35-3-3-3H3C1.35 0 0 1.35 0 3v18c0 1.65 1.35 3 3 3h24c1.65 0 3-1.35 3-3V3Zm-3 0-12 7.5L3 3h24Zm0 18H3V6l12 7.5L27 6v15Z"/>
             </svg>
@@ -27,7 +27,7 @@
       <div aria-label="Gus" role="img" decoding="async" class="hero-portrait" sizes="100vw" />
     </div>
     <div class="hero-deco" :class="{'slide-in': revealMask}">
-      <img width="100%" src="@/assets/back_wave.svg">
+      <img width="100%" src="@/assets/back_wave.svg" alt="Decoration Wave">
     </div>
   </div>
 </template>

@@ -1,24 +1,24 @@
 <template>
   <div class="journey-page" :class="{'dark-mode': getDarkMode, 'tablet-view': isTablet}" id="journey">
-    <div class="contact-text">
+    <div class="journey-content">
       <h1>My Journey</h1>
       <div class="timeline">
         <div class="line"></div>
         <div class="time">
-          <h4 class="date">2024</h4>
+          <h3 class="date">2024</h3>
           <span class="circle"></span>
           <div class="time-content">
-            <h3>AI Engineer</h3>
-            <h4>GEODE, Lyon</h4>
+            <h2>AI Engineer</h2>
+            <h3>GEODE, Lyon</h3>
             <p>Creation of a prompt-based level generator for a mobile game app.</p>
           </div>
         </div>
         <div class="time">
-          <h4 class="date">2024</h4>
+          <h3 class="date">2024</h3>
           <span class="circle"></span>
           <div class="time-content">
-            <h3>AI Trainer</h3>
-            <h4>DataAnnotation, NYC</h4>
+            <h2>AI Trainer</h2>
+            <h3>DataAnnotation, NYC</h3>
             <p>Fine-tuning of multiple NLP multi-agent systems for data analysis tasks.</p>
           </div>
         </div>
@@ -63,14 +63,14 @@ export default {
   justify-content: space-between;
 }
 
-.contact-text {
+.journey-content {
   display: flex;
   flex-direction: column;
 
   max-width: 30rem;
 }
 
-.contact-text h1 {
+.journey-content h1 {
   color: #131316;
   font-size: 3rem;
   font-style: normal;
@@ -82,7 +82,7 @@ export default {
 
   text-align: center;
 }
-.journey-page.dark-mode .contact-text h1 {
+.journey-page.dark-mode .journey-content h1 {
   color: #FFFFFF;
 }
 
@@ -107,7 +107,7 @@ export default {
   align-items: center;
   position: relative;
 
-  gap: 3rem;
+  gap: 2.5rem;
   width: auto;
 }
 
@@ -136,13 +136,13 @@ export default {
   width: auto;
 }
 
-.time-content h3 {
+.time-content h2 {
   font-size: 1.75rem;
   color: #131316;
   margin: 0;
 }
 
-.time-content h4 {
+.time-content h3 {
   color: #131316;
   margin: 0;
 }
@@ -155,10 +155,10 @@ export default {
 .journey-page.dark-mode .line {
   border-image-source: linear-gradient(180deg, rgba(141,140,255,1) 0%, rgba(255,140,201,1) 50%, rgba(255,207,140,1) 100%);;
 }
-.journey-page.dark-mode .time-content h3 {
+.journey-page.dark-mode .time-content h2 {
   color: #FFFFFF;
 }
-.journey-page.dark-mode .time-content h4 {
+.journey-page.dark-mode .time-content h3 {
   color: #FFFFFF;
 }
 .journey-page.dark-mode .time-content p {

@@ -47,7 +47,7 @@
     <!-- ========= FOOTER ========= -->
     <div class="footer">
       <p>Website designed &amp; implemented with <span>&#10084;</span> using <a href="https://www.figma.com/ui-design-tool/" target="_blank">Figma</a> and <a href="https://vuejs.org/" target="_blank">Vue.js</a></p>
-      <img width="100%" src="./assets/footer_wave.svg">
+      <img width="100%" src="./assets/footer_wave.svg" alt="Footer Wave">
     </div>
 
   </div>
@@ -241,7 +241,7 @@ body {
   transition: .2s;
 }
 
-.footer:hover p span {
+.footer p:hover span {
   color: #e74c3c;
 }
 

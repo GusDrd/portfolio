@@ -7,17 +7,17 @@
         <div class="about-boxes">
           <div class="about-box">
             <span>💻</span>
-            <h3>AI Expertise</h3>
+            <h2>AI Expertise</h2>
             <p>Building AI solutions with Python, PyTorch &amp; more</p>
           </div>
           <div class="about-box">
             <span>🤖</span>
-            <h3>Creative Tech</h3>
+            <h2>Creative Tech</h2>
             <p>Transforming creative industries with AI-driven innovation</p>
           </div>
           <div class="about-box">
             <span>💡</span>
-            <h3>Continuous Learning</h3>
+            <h2>Continuous Learning</h2>
             <p>Driven by curiosity, always exploring new tech and ideas</p>
           </div>
         </div>
@@ -232,13 +232,13 @@ export default {
   margin: 0 auto;
 }
 
-.about-box h3 {
+.about-box h2 {
   font-size: 1.5rem;
   line-height: 1.75rem;
   margin: .5rem 0;
   color: #131316;
 }
-.about-page.dark-mode .about-box h3 {
+.about-page.dark-mode .about-box h2 {
   color: #FFFFFF;
 }
 
@@ -357,11 +357,11 @@ export default {
 .about-page.dark-mode .skill-icon {
   fill: #FFFFFF;
 }
-.skill-icon:hover,
+.skill:hover .skill-icon,
 .skill:active .skill-icon {
   fill: #5F5CFF;
 }
-.about-page.dark-mode .skill-icon:hover,
+.about-page.dark-mode .skill:hover .skill-icon,
 .skill:active .about-page.dark-mode .skill-icon {
   fill: #8D8CFF;
 }

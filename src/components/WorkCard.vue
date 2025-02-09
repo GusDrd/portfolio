@@ -1,8 +1,8 @@
 <template>
   <a :href="url" target="_blank" class="card" :class="{'tablet-view': isTablet, 'dark-mode': getDarkMode}">
-    <img :src="resolvedSvgPath" />
+    <img :src="resolvedSvgPath" alt="Icon"/>
     <div class="content">
-      <h3 :key="name">{{name}}</h3>
+      <h2 :key="name">{{name}}</h2>
       <p>{{desc}}</p>
       <a :href="url" target="_blank">{{url_name}}</a>
     </div>
@@ -82,7 +82,7 @@ export default {
   margin-bottom: 2rem;
 }
 
-.content h3 {
+.content h2 {
   font-size: 2rem;
   line-height: .9;
   color: #131316;
@@ -154,7 +154,7 @@ export default {
     margin-bottom: 1.5rem;
   }
 
-  .content h3 {
+  .content h2 {
     margin-top: 1.5rem;
     margin-bottom: 0;
   }

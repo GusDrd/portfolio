@@ -47,7 +47,7 @@
     <!-- ========= FOOTER ========= -->
     <div class="footer">
       <p>Website designed &amp; implemented with <span>&#10084;</span> using <a href="https://www.figma.com/ui-design-tool/" target="_blank">Figma</a> and <a href="https://vuejs.org/" target="_blank">Vue.js</a></p>
-      <img width="100%" src="./assets/footer_wave.svg" alt="Footer Wave">
+      <img width="100%" src="./assets/images/footer_wave.svg" alt="Footer Wave">
     </div>
 
   </div>
@@ -118,8 +118,16 @@ export default {
 
 <!-- ============= STYLE ============= -->
 <style>
+@font-face {
+  font-family: "Red Hat Display";
+  src: url("@/assets/fonts/RedHatDisplay-VariableFont_wght.woff2") format("woff2"),
+       url("@/assets/fonts/RedHatDisplay-VariableFont_wght.woff") format("woff");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
 #app {
-  font-family: Red Hat Display, Helvetica, Arial, sans-serif;
+  font-family: "Red Hat Display", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 

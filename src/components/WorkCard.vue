@@ -31,7 +31,7 @@ export default {
       return website_stores().getTabletMode;
     },
     resolvedSvgPath() {
-      return require(`@/assets/icons/${this.svg_path}`);
+      return require(`@/assets/icons/projects/${this.svg_path}`);
     }
   }
 }
@@ -84,7 +84,7 @@ export default {
 
 .content h2 {
   font-size: 2rem;
-  line-height: .9;
+  line-height: 1;
   color: #131316;
 
   margin-top: 2rem;

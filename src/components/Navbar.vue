@@ -9,8 +9,8 @@
             <a href="#about" @click="toggleSideView" v-smooth-scroll>about</a>
             <a href="#journey" @click="toggleSideView" v-smooth-scroll>journey</a>
             <div class="night-mode" :class="{ 'is-active': getDarkMode }" @click="toggleDarkMode(); toggleSideView();">
-              <InlineSvg :src="require('@/assets/icons/night-icon.svg')" :class="{'night-icon': !getDarkMode, 'active-night-icon': getDarkMode}"></InlineSvg>
-              <InlineSvg :src="require('@/assets/icons/day-icon.svg')" :class="{'day-icon': getDarkMode, 'active-day-icon': !getDarkMode}"></InlineSvg>
+              <InlineSvg :src="require('@/assets/icons/navbar/night.svg')" :class="{'night-icon': !getDarkMode, 'active-night-icon': getDarkMode}"></InlineSvg>
+              <InlineSvg :src="require('@/assets/icons/navbar/day.svg')" :class="{'day-icon': getDarkMode, 'active-day-icon': !getDarkMode}"></InlineSvg>
             </div>
           </div>
         </div>
@@ -26,8 +26,8 @@
         <li><a href="#about" v-smooth-scroll>about</a></li>
         <li><a href="#journey" v-smooth-scroll>journey</a></li>
         <li><div class="night-mode" :class="{ 'is-active': getDarkMode }" @click="toggleDarkMode()">
-          <InlineSvg :src="require('@/assets/icons/night-icon.svg')" :class="{'night-icon': !getDarkMode, 'active-night-icon': getDarkMode}"></InlineSvg>
-          <InlineSvg :src="require('@/assets/icons/day-icon.svg')" :class="{'day-icon': getDarkMode, 'active-day-icon': !getDarkMode}"></InlineSvg>
+          <InlineSvg :src="require('@/assets/icons/navbar/night.svg')" :class="{'night-icon': !getDarkMode, 'active-night-icon': getDarkMode}"></InlineSvg>
+          <InlineSvg :src="require('@/assets/icons/navbar/day.svg')" :class="{'day-icon': getDarkMode, 'active-day-icon': !getDarkMode}"></InlineSvg>
         </div></li>
       </ul>
     </div>
@@ -129,9 +129,6 @@ export default {
   color: #505059;
   text-align: center;
   font-size: 1.5rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
   text-decoration: none;
 
   transition: 200ms;
@@ -160,11 +157,9 @@ export default {
 
   color: #131316;
   font-size: 1.75rem;
-  font-style: medium;
-  line-height: normal;
+  font-weight: 600;
 
   transition: 0.5s;
-  -webkit-transition: 0.5s;
 }
 .navbar h1:hover {
   color: #5F5CFF;
@@ -203,7 +198,7 @@ export default {
   height: 37.5px;
   z-index: 3;
 
-  transition: 200ms;
+  transition: 0.2s;
 }
 
 .night-mode svg {
@@ -306,7 +301,7 @@ export default {
   opacity: 0;
   z-index: 0;
 
-  transition: .4s;
+  transition: 0.4s;
 }
 
 .active-day-icon {
@@ -321,7 +316,7 @@ export default {
   transform: scale(1);
   z-index: 1;
 
-  transition: .4s;
+  transition: 0.4s;
 }
 
 .active-night-icon {
@@ -356,7 +351,7 @@ export default {
 }
 
 .night-mode svg path {
-  transition: .2s;
+  transition: 0.2s;
 }
 
 .night-icon {

@@ -170,7 +170,6 @@ export default {
 
   color: #131316;
   font-size: 3rem;
-  font-weight: bold;
   line-height: 1;
 }
 .about-page.dark-mode .about-text h1 {
@@ -192,7 +191,11 @@ export default {
   color: #F1F1F1;
 }
 
-
+@media screen and (max-width: 600px) and (min-width: 100px) {
+  .about-text p {
+    font-size: 1.25rem;
+  }
+}
 
 /* ------------------------------------- */
 /* ------------ About Boxes ------------ */
@@ -246,7 +249,7 @@ export default {
   font-size: 1.125rem;
   margin: 0;
   color: #505059;
-  justify-self: flex-start;
+  justify-content: flex-start;
 }
 
 

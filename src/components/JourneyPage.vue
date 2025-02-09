@@ -5,7 +5,7 @@
       <div class="timeline">
         <div class="line"></div>
         <div class="time">
-          <h3 class="date">2024</h3>
+          <h2 class="date">2024</h2>
           <span class="circle"></span>
           <div class="time-content">
             <h2>AI Engineer</h2>
@@ -14,7 +14,7 @@
           </div>
         </div>
         <div class="time">
-          <h3 class="date">2024</h3>
+          <h2 class="date">2024</h2>
           <span class="circle"></span>
           <div class="time-content">
             <h2>AI Trainer</h2>
@@ -73,9 +73,7 @@ export default {
 .journey-content h1 {
   color: #131316;
   font-size: 3rem;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
+  line-height: 1;
   text-align: left;
 
   margin: 2rem 0;
@@ -113,6 +111,8 @@ export default {
 
 
 .date {
+  font-size: 1.25rem;
+  font-weight: 500;
   align-self: center;
   color: #505059;
 }
@@ -144,6 +144,7 @@ export default {
 
 .time-content h3 {
   color: #131316;
+  font-weight: 600;
   margin: 0;
 }
 

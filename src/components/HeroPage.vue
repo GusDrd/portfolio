@@ -27,7 +27,7 @@
       <div aria-label="Gus" role="img" decoding="async" class="hero-portrait" sizes="100vw" />
     </div>
     <div class="hero-deco" :class="{'slide-in': revealMask}">
-      <img width="100%" src="@/assets/back_wave.svg" alt="Decoration Wave">
+      <img width="100%" src="@/assets/images/back_wave.svg" alt="Decoration Wave">
     </div>
   </div>
 </template>
@@ -105,7 +105,7 @@ export default {
   align-self: center;
 
   border-radius: 50%;
-  background: url("@/assets/portrait_original.jpg") #EEEEFF 80% center / 150.638% 100% no-repeat;
+  background: url("@/assets/images/portrait_original.jpg") #EEEEFF 80% center / 150.638% 100% no-repeat;
 
   transition: 200ms;
 }
@@ -127,7 +127,7 @@ export default {
   color: #131316;
   text-align: left;
   font-size: 3rem;
-  font-style: medium;
+  font-weight: 700;
   line-height: 1;
 }
 .hero-content.dark-mode .hero-text h1 {
@@ -135,11 +135,10 @@ export default {
 }
 
 .hero-text span {
-  font-size: 3rem;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 1;
   color: #5F5CFF;
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1;
 }
 .hero-content.dark-mode .hero-text span {
   color: #8D8CFF;
@@ -154,9 +153,6 @@ export default {
 
   color: #505059;
   font-size: 1.5rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
 }
 .hero-content.dark-mode .hero-text p {
   color: #F1F1F1;
@@ -204,9 +200,6 @@ export default {
 
   color: #FFFFFF;
   font-size: 1rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
   text-decoration: none;
 
   transition-duration: 200ms;
@@ -219,6 +212,12 @@ export default {
 }
 .hero-content.dark-mode .hero-about:hover {
   background-color: #7674f1;
+}
+
+@media screen and (max-width: 600px) and (min-width: 100px) {
+  .hero-text p {
+    font-size: 1.25rem;
+  }
 }
 
 /* -------------------------- */
@@ -248,9 +247,9 @@ export default {
 
 @media screen and (max-width: 800px) and (min-width: 100px) {
   .hero-deco img {
-  height: 200px;
-  object-fit: cover;
-}
+    height: 200px;
+    object-fit: cover;
+  }
 }
 
 /* -------------------------- */

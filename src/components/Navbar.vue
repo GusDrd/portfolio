@@ -1,37 +1,40 @@
 <template>
-  <div class="navbar-container" :class="{'tablet-view': isTablet}">
-    <div class="navbar" :class="{'dark-mode': getDarkMode}">
-      <div class="tablet-bar" v-if="isTablet" :class="{'is-active': isSideView}">
-        <h1>Augustin Dirand</h1>
-        <div class="menu">
-          <div class="menu-links">
-            <a href="#work" @click="toggleSideView" v-smooth-scroll>projects</a>
-            <a href="#about" @click="toggleSideView" v-smooth-scroll>about</a>
-            <a href="#journey" @click="toggleSideView" v-smooth-scroll>journey</a>
-            <div class="night-mode" :class="{ 'is-active': getDarkMode }" @click="toggleDarkMode(); toggleSideView();">
-              <InlineSvg :src="require('@/assets/icons/navbar/night.svg')" :class="{'night-icon': !getDarkMode, 'active-night-icon': getDarkMode}"></InlineSvg>
-              <InlineSvg :src="require('@/assets/icons/navbar/day.svg')" :class="{'day-icon': getDarkMode, 'active-day-icon': !getDarkMode}"></InlineSvg>
+  <header class="navbar-base" :class="{'tablet-view': isTablet, 'dark-mode': getDarkMode, 'scrolling': (scrollY > 0), 'hidden': isScrollingDown}">
+    <div class="navbar-container">
+      <div class="navbar">
+        <div class="tablet-bar" v-if="isTablet" :class="{'is-active': isSideView}">
+          <a href="#home"><h1>Augustin Dirand</h1></a>
+          <div class="menu">
+            <div class="menu-links">
+              <a href="#work" @click="toggleSideView" v-smooth-scroll>projects</a>
+              <a href="#about" @click="toggleSideView" v-smooth-scroll>about</a>
+              <a href="#journey" @click="toggleSideView" v-smooth-scroll>journey</a>
+              <div class="night-mode" :class="{ 'is-active': getDarkMode }" @click="toggleDarkMode(); toggleSideView();">
+                <InlineSvg :src="require('@/assets/icons/navbar/night.svg')" :class="{'night-icon': !getDarkMode, 'active-night-icon': getDarkMode}"></InlineSvg>
+                <InlineSvg :src="require('@/assets/icons/navbar/day.svg')" :class="{'day-icon': getDarkMode, 'active-day-icon': !getDarkMode}"></InlineSvg>
+              </div>
             </div>
           </div>
+          <svg class="bars" @click="toggleSideView" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 18" fill="#131316">
+            <path class="bar-1" d="M0 1.58824C0 0.711077 0.711077 0 1.58824 0H22.4118C23.2889 0 24 0.711077 24 1.58824V1.58824C24 2.46539 23.2889 3.17647 22.4118 3.17647H1.58824C0.711077 3.17647 0 2.46539 0 1.58824V1.58824Z"/>
+            <path class="bar-2" d="M0 9C0 8.12284 0.711077 7.41177 1.58824 7.41177H22.4118C23.2889 7.41177 24 8.12284 24 9V9C24 9.87716 23.2889 10.5882 22.4118 10.5882H1.58824C0.711077 10.5882 0 9.87716 0 9V9Z"/>
+            <path class="bar-3" d="M0 16.4118C0 15.5346 0.711077 14.8235 1.58823 14.8235H22.4118C23.2889 14.8235 24 15.5346 24 16.4118V16.4118C24 17.2889 23.2889 18 22.4118 18H1.58823C0.711076 18 0 17.2889 0 16.4118V16.4118Z"/>
+          </svg>
+
         </div>
-        <svg class="bars" @click="toggleSideView" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 18" fill="#131316">
-          <path class="bar-1" d="M0 1.58824C0 0.711077 0.711077 0 1.58824 0H22.4118C23.2889 0 24 0.711077 24 1.58824V1.58824C24 2.46539 23.2889 3.17647 22.4118 3.17647H1.58824C0.711077 3.17647 0 2.46539 0 1.58824V1.58824Z"/>
-          <path class="bar-2" d="M0 9C0 8.12284 0.711077 7.41177 1.58824 7.41177H22.4118C23.2889 7.41177 24 8.12284 24 9V9C24 9.87716 23.2889 10.5882 22.4118 10.5882H1.58824C0.711077 10.5882 0 9.87716 0 9V9Z"/>
-          <path class="bar-3" d="M0 16.4118C0 15.5346 0.711077 14.8235 1.58823 14.8235H22.4118C23.2889 14.8235 24 15.5346 24 16.4118V16.4118C24 17.2889 23.2889 18 22.4118 18H1.58823C0.711076 18 0 17.2889 0 16.4118V16.4118Z"/>
-        </svg>
+        <a href="#home" v-if="!isTablet"><h1>Augustin Dirand</h1></a>
+        <ul v-if="!isTablet">
+          <li><a href="#work" v-smooth-scroll>projects</a></li>
+          <li><a href="#about" v-smooth-scroll>about</a></li>
+          <li><a href="#journey" v-smooth-scroll>journey</a></li>
+          <li><div class="night-mode" :class="{ 'is-active': getDarkMode }" @click="toggleDarkMode()">
+            <InlineSvg :src="require('@/assets/icons/navbar/night.svg')" :class="{'night-icon': !getDarkMode, 'active-night-icon': getDarkMode}"></InlineSvg>
+            <InlineSvg :src="require('@/assets/icons/navbar/day.svg')" :class="{'day-icon': getDarkMode, 'active-day-icon': !getDarkMode}"></InlineSvg>
+          </div></li>
+        </ul>
       </div>
-      <h1 v-if="!isTablet">Augustin Dirand</h1>
-      <ul v-if="!isTablet">
-        <li><a href="#work" v-smooth-scroll>projects</a></li>
-        <li><a href="#about" v-smooth-scroll>about</a></li>
-        <li><a href="#journey" v-smooth-scroll>journey</a></li>
-        <li><div class="night-mode" :class="{ 'is-active': getDarkMode }" @click="toggleDarkMode()">
-          <InlineSvg :src="require('@/assets/icons/navbar/night.svg')" :class="{'night-icon': !getDarkMode, 'active-night-icon': getDarkMode}"></InlineSvg>
-          <InlineSvg :src="require('@/assets/icons/navbar/day.svg')" :class="{'day-icon': getDarkMode, 'active-day-icon': !getDarkMode}"></InlineSvg>
-        </div></li>
-      </ul>
     </div>
-  </div>
+  </header>
 </template>
 
 
@@ -48,8 +51,18 @@ export default {
 
   data() {
     return {
-      isSideView: false
+      isSideView: false,
+      scrollY: 0,
+      lastScrollY: 0,
+      isScrollingDown: false
     }
+  },
+
+  mounted() {
+    window.addEventListener('scroll', this.handleScroll);
+  },
+  beforeUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
   },
 
   methods: {
@@ -64,6 +77,24 @@ export default {
     },
     enableScroll() {
       document.body.style.overflow = 'auto';
+    },
+    handleScroll() {
+      const currentScrollY = window.scrollY;
+
+      // Check scroll direction
+      if (currentScrollY > this.lastScrollY && currentScrollY > 50) {
+        this.isScrollingDown = true;
+      } else {
+        this.isScrollingDown = false;
+      }
+
+      // Reset when at the top
+      if (currentScrollY === 0) {
+        this.isScrollingDown = false;
+      }
+
+      this.lastScrollY = currentScrollY;
+      this.scrollY = currentScrollY;
     }
   },
 
@@ -93,6 +124,15 @@ export default {
 <!-- ============= STYLE ============= -->
 <style scoped>
 
+.navbar-base {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  transition: all 0.3s ease;
+}
+
 .navbar-container {
   padding-left: 1rem;
   padding-right: 1rem;
@@ -102,12 +142,24 @@ export default {
 
   max-width: 64rem;
 }
+.navbar-base.scrolling {
+  background: white;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+
+  z-index: 1000;
+}
+.navbar-base.dark-mode.scrolling {
+  background: #1b1b1e;
+}
+.navbar-base.hidden {
+  transform: translateY(-100%);
+}
 
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 6rem;
+  height: 4rem;
 }
 
 .navbar ul {
@@ -128,7 +180,7 @@ export default {
 .navbar a {
   color: #505059;
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   text-decoration: none;
 
   transition: 200ms;
@@ -138,10 +190,10 @@ export default {
   color: #5F5CFF;
 }
 
-.navbar.dark-mode a {
+.navbar-base.dark-mode a {
   color: #FFFFFF;
 }
-.navbar.dark-mode a:hover {
+.navbar-base.dark-mode a:hover {
   color: #8D8CFF;
 }
 
@@ -156,7 +208,7 @@ export default {
   margin: 30px 0;
 
   color: #131316;
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   font-weight: 600;
 
   transition: 0.5s;
@@ -165,23 +217,23 @@ export default {
   color: #5F5CFF;
 }
 
-.navbar.dark-mode h1 {
+.navbar-base.dark-mode h1 {
   color: #FFFFFF;
 }
-.navbar.dark-mode h1:hover {
+.navbar-base.dark-mode h1:hover {
   color: #8D8CFF;
 }
 
 /* ------------------------------------- */
 /* -------- Navbar tablet view -------- */
 
-.navbar-container.tablet-view {
+.navbar-base.tablet-view .navbar-container{
   padding-left: 2rem;
   padding-right: 2rem;
   max-width: 35rem;
 }
 
-.navbar-container.tablet-view .navbar {
+.navbar-base.tablet-view .navbar {
   display: block;
 }
 
@@ -194,26 +246,26 @@ export default {
 
 .tablet-bar svg {
   display: flex;
-  width: 50px;
-  height: 37.5px;
+  width: 42px;
+  height: 32px;
   z-index: 3;
 
   transition: 0.2s;
 }
 
 .night-mode svg {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.25rem;
+  height: 1.25rem;
 }
 
-.navbar.dark-mode .tablet-bar svg {
+.navbar-base.dark-mode .tablet-bar svg {
   fill: #FFFFFF;
 }
 
 
 .menu {
   display: flex;
-  position: absolute;
+  position: fixed;
   width: 100%;
   height: 100%;
   justify-content: center;
@@ -227,7 +279,7 @@ export default {
 
   background: #F1F1F1;
 }
-.navbar.dark-mode .menu {
+.navbar-base.dark-mode .menu {
   background-color: #1b1b1e;
 }
 
@@ -277,8 +329,8 @@ export default {
   }
 
   .navbar h1 {
-  font-size: 1.5rem;
-}
+    font-size: 1.5rem;
+  }
 }
 
 

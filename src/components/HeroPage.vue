@@ -22,7 +22,7 @@
             </svg>
           </a>
         </div>
-        <a href="#about" class="hero-about" v-smooth-scroll>learn more</a>
+        <a href="#about" class="hero-about" v-smooth-scroll>Learn more <InlineSvg :src="require('@/assets/icons/send.svg')" class="send"></InlineSvg></a>
       </div>
       <img 
         srcset="
@@ -35,6 +35,7 @@
         class="hero-portrait"
         decoding="async"
         loading="eager"
+        v-animate
       />
     </div>
     <div class="hero-deco" :class="{'slide-in': revealMask}">
@@ -47,8 +48,9 @@
 <!-- ============ SCRIPTS ============ -->
 <script>
 
-import NavBar from '@/components/Navbar.vue'
 import { website_stores } from '@/store/index.js'
+import NavBar from '@/components/Navbar.vue'
+import InlineSvg from 'vue-inline-svg';
 
 export default {
   name: 'hero-page',
@@ -60,7 +62,8 @@ export default {
   },
 
   components: {
-    NavBar
+    NavBar,
+    InlineSvg
   },
 
   computed: {
@@ -85,6 +88,7 @@ export default {
 <style scoped>
 
 .hero-page {
+  padding-top: 6rem;
   width: 100%
 }
 
@@ -202,7 +206,6 @@ export default {
   align-items: center;
   gap: 10px;
   flex-shrink: 0;
-  z-index: 1;
 
   border-radius: 30px;
   background-color: #5F5CFF;
@@ -211,16 +214,32 @@ export default {
   font-size: 1rem;
   text-decoration: none;
 
-  transition-duration: 200ms;
+  transition: 0.2s;
 }
 .hero-about:hover {
   background-color: #524fef;
 }
+/*
 .hero-content.dark-mode .hero-about {
   background-color: #8D8CFF;
 }
 .hero-content.dark-mode .hero-about:hover {
   background-color: #7674f1;
+}
+*/
+
+.send {
+  width: .75rem;
+  height: .75rem;
+
+  fill: #FFFFFF;
+
+  transition: all 0.4s ease;
+}
+
+.hero-about:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, .2);
 }
 
 @media screen and (max-width: 600px) and (min-width: 100px) {
@@ -235,7 +254,6 @@ export default {
 .hero-deco {
   display: flex;
   position: relative;
-  padding-top: -60px;
   overflow: hidden;
 }
 

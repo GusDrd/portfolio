@@ -124,16 +124,17 @@ export default {
 
   transition: background-color 0.2s ease;
 }
-.card.dark-mode .content a {
-  background-color: #8D8CFF;
-}
-
 .content a:hover {
   background-color: #524fef;
+}
+/*
+.card.dark-mode .content a {
+  background-color: #8D8CFF;
 }
 .card.dark-mode .content a:hover {
   background-color: #7674f1;
 }
+  */
 
 
 @media screen and (max-width: 500px) and (min-width: 100px) {

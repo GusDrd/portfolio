@@ -22,18 +22,22 @@
     <!-- ========= WORK PAGE ========= -->
     <div class="work-page" :class="{'dark-mode': getDarkMode, 'tablet-view': isTablet}" id="work">
       <h1>Projects</h1>
-      <div class="work-cards">
-        <WorkCard :name="'Muse'"
-        :desc="'AI research project exploring music recommendation systems which only use CBF and multiple musical and audio features.'"
-        :svg_path="'muse.svg'"
-        :url_name="'Discover'"
-        :url="'https://muse.augustindirand.com/'"/>
+      <div class="work-cards" v-animate>
+        <WorkCard 
+          :name="'Muse'"
+          :desc="'AI research project exploring music recommendation systems which only use CBF and multiple musical and audio features.'"
+          :svg_path="'muse.svg'"
+          :url_name="'Discover'"
+          :url="'https://muse.augustindirand.com/'"
+        ></WorkCard>
 
-        <WorkCard :name="'Portfolio'"
-        :desc="'An occasion to learn about Vue, to explore web design, and to showcase some of my previous work and experiences.'"
-        :svg_path="'portfolio.svg'"
-        :url_name="'Explore'"
-        :url="'https://github.com/GusDrd/portfolio'"/>
+        <WorkCard 
+          :name="'Portfolio'"
+          :desc="'An occasion to learn about Vue, to explore web design, and to showcase some of my previous work and experiences.'"
+          :svg_path="'portfolio.svg'"
+          :url_name="'Explore'"
+          :url="'https://github.com/GusDrd/portfolio'"
+        ></WorkCard>
 
       </div>
     </div>

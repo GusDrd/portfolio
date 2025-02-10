@@ -4,19 +4,19 @@
       <div class="about-text">
         <h1>About me</h1>
         <p>I thrive on working with cutting-edge AI technologies to solve complex challenges. Whether optimizing models, developing generative AI, or refining NLP systems, I aim to make AI more accessible, efficient, and impactful.</p>
-        <div class="about-boxes">
+        <div class="about-boxes" v-animate>
           <div class="about-box">
-            <span>💻</span>
+            <span>🧠</span>
             <h2>AI Expertise</h2>
-            <p>Building AI solutions with Python, PyTorch &amp; more</p>
+            <p>Crafting intelligent systems with text, images, sound &amp; data</p>
           </div>
           <div class="about-box">
-            <span>🤖</span>
+            <span>🎨</span>
             <h2>Creative Tech</h2>
-            <p>Transforming creative industries with AI-driven innovation</p>
+            <p>Transforming art, gaming &amp; design with AI-driven innovation</p>
           </div>
           <div class="about-box">
-            <span>💡</span>
+            <span>🚀</span>
             <h2>Continuous Learning</h2>
             <p>Driven by curiosity, always exploring new tech and ideas</p>
           </div>
@@ -136,6 +136,8 @@ export default {
 
 .about-page {
   background: rgb(255, 255, 255);
+
+  transition: 0.2s;
 }
 .about-page.dark-mode {
   background: #1b1b1e;

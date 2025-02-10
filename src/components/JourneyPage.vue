@@ -57,7 +57,9 @@ export default {
     }
   },
   mounted() {
-    this.adjustLineHeight();
+    setTimeout(() => {
+      this.adjustLineHeight();
+    }, 100);
     window.addEventListener('resize', this.adjustLineHeight);
   },
   beforeUnmount() {
@@ -101,6 +103,8 @@ export default {
 
   max-width: 72rem;
   justify-content: space-between;
+
+  transition: 0.2s;
 }
 
 .journey-content {

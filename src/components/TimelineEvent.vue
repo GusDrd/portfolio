@@ -8,6 +8,7 @@
       'long': size === 'long',
       'xtreme': size === 'xtreme'
     }"
+    v-animate
   >
     <h2 class="date">{{year}}</h2>
     <span class="circle"></span>

@@ -2,26 +2,36 @@
   <div class="journey-page" :class="{'dark-mode': getDarkMode, 'tablet-view': isTablet}" id="journey">
     <div class="journey-content">
       <h1>My Journey</h1>
-      <div class="timeline">
-        <div class="line"></div>
-        <div class="time">
-          <h2 class="date">2024</h2>
-          <span class="circle"></span>
-          <div class="time-content">
-            <h2>AI Engineer</h2>
-            <h3>GEODE, Lyon</h3>
-            <p>Creation of a prompt-based level generator for a mobile game app.</p>
-          </div>
-        </div>
-        <div class="time">
-          <h2 class="date">2024</h2>
-          <span class="circle"></span>
-          <div class="time-content">
-            <h2>AI Trainer</h2>
-            <h3>DataAnnotation, NYC</h3>
-            <p>Fine-tuning of multiple NLP multi-agent systems for data analysis tasks.</p>
-          </div>
-        </div>
+      <div ref="timeline" class="timeline">
+        <div ref="line" class="line"></div>
+        <TimelineEvent
+          :year="'2024'"
+          :title="'AI Engineer'"
+          :location="'GEODE, Lyon'"
+          :desc="'Creation of a prompt-based level generator for a mobile game app.'"
+          :size="'normal'"
+        ></TimelineEvent>
+        <TimelineEvent
+          :year="'2024'"
+          :title="'AI Trainer'"
+          :location="'DataAnnotation, NYC'"
+          :desc="'Fine-tuning of multiple NLP multi-agent systems for data analysis tasks.'"
+          :size="'normal'"
+        ></TimelineEvent>
+        <TimelineEvent
+          :year="'2023'"
+          :title="'AI Masters'"
+          :location="'QMUL, London'"
+          :desc="'Artificial Intelligence degree obtained with Distinction. (GPA: 4)'"
+          :size="'medium'"
+        ></TimelineEvent>
+        <TimelineEvent
+          :year="'2022'"
+          :title="'Robotics Bachelor'"
+          :location="'QMUL, London'"
+          :desc="'Robotics Engineering degree obtained with First-Class Honours. (GPA: 4)'"
+          :size="'medium'"
+        ></TimelineEvent>
       </div>
     </div>
   </div>
@@ -31,15 +41,45 @@
 <!-- ============ SCRIPTS ============ -->
 <script>
 import { website_stores } from '@/store/index.js'
+import TimelineEvent from '@/components/TimelineEvent.vue'
 
 export default {
   name: 'journey-page',
+  components: {
+    TimelineEvent
+  },
   computed: {
     getDarkMode() {
       return website_stores().getDarkMode;
     },
     isTablet() {
       return website_stores().getTabletMode;
+    }
+  },
+  mounted() {
+    this.adjustLineHeight();
+    window.addEventListener('resize', this.adjustLineHeight);
+  },
+  beforeUnmount() {
+    window.removeEventListener('resize', this.adjustLineHeight);
+  },
+  methods: {
+    adjustLineHeight() {
+      const line = this.$refs.line;
+      const timeline = this.$refs.timeline;
+
+      if (line && timeline) {
+        const timelineTop = timeline.offsetTop;
+        const documentHeight = document.body.scrollHeight;
+
+        // Get computed styles for the margin
+        const computedStyle = window.getComputedStyle(line);
+        const marginTop = parseFloat(computedStyle.marginTop) || 0; // Convert to number
+
+        // Calculate height from the timeline top to the bottom of the page, adjusting for margin
+        const newHeight = documentHeight - timelineTop - marginTop;
+        line.style.height = `${newHeight}px`;
+      }
     }
   }
 }
@@ -88,7 +128,6 @@ export default {
 .line {
   margin: 1rem 0 0 3.75rem;
   position: absolute;
-  height: 32rem;
 
   border: 10px solid;
   border-image-slice: 1;
@@ -98,78 +137,8 @@ export default {
   border-bottom: 0;
   border-image-source: linear-gradient(180deg, rgba(95,92,255,1) 0%, rgba(255,92,201,1) 50%, rgba(255,187,92,1) 100%);
 }
-
-.time {
-  display: flex;
-  margin-top: 4rem;
-  align-items: center;
-  position: relative;
-
-  gap: 2.5rem;
-  width: auto;
-}
-
-
-.date {
-  font-size: 1.25rem;
-  font-weight: 500;
-  align-self: center;
-  color: #505059;
-}
-
-.circle {
-  width: 1rem;
-  height: 1rem;
-
-  border-radius: 50%;
-  background-color: #131316;
-
-  position: absolute;
-  left: calc(3.75rem + 2.5px);
-  transform: translateX(-50%);
-
-  z-index: 1;
-}
-
-
-.time-content {
-  width: auto;
-}
-
-.time-content h2 {
-  font-size: 1.75rem;
-  color: #131316;
-  margin: 0;
-}
-
-.time-content h3 {
-  color: #131316;
-  font-weight: 600;
-  margin: 0;
-}
-
-.time-content p {
-  color: #505059;
-  margin: .5rem 0 0 0;
-}
-
 .journey-page.dark-mode .line {
   border-image-source: linear-gradient(180deg, rgba(141,140,255,1) 0%, rgba(255,140,201,1) 50%, rgba(255,207,140,1) 100%);;
-}
-.journey-page.dark-mode .time-content h2 {
-  color: #FFFFFF;
-}
-.journey-page.dark-mode .time-content h3 {
-  color: #FFFFFF;
-}
-.journey-page.dark-mode .time-content p {
-  color: #F1F1F1;
-}
-.journey-page.dark-mode .date {
-  color: #F1F1F1;
-}
-.journey-page.dark-mode .circle {
-  background-color: #F1F1F1;
 }
 
 </style>

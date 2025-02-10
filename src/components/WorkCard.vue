@@ -90,7 +90,7 @@ export default {
   margin-top: 2rem;
   margin-bottom: 0;
 }
-.card.dark-mode .content h3 {
+.card.dark-mode .content h2 {
   color: #FFFFFF;
 }
 

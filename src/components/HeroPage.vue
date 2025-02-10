@@ -24,7 +24,18 @@
         </div>
         <a href="#about" class="hero-about" v-smooth-scroll>learn more</a>
       </div>
-      <div aria-label="Gus" role="img" decoding="async" class="hero-portrait" sizes="100vw" />
+      <img 
+        srcset="
+          @/assets/images/portraits/portrait-400.webp 400w, 
+          @/assets/images/portraits/portrait-800.webp 800w,
+          @/assets/images/portraits/portrait-1600.webp 1600w"
+        sizes="(max-width: 800px) 400px, 800px"
+        src="@/assets/images/portraits/portrait-800.webp" 
+        alt="Augustin Dirand – AI Engineer & Data Scientist"
+        class="hero-portrait"
+        decoding="async"
+        loading="eager"
+      />
     </div>
     <div class="hero-deco" :class="{'slide-in': revealMask}">
       <img width="100%" src="@/assets/images/back_wave.svg" alt="Decoration Wave">
@@ -94,20 +105,18 @@ export default {
 }
 
 .hero-portrait {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  max-width: 400px;
+  display: block;
   aspect-ratio: 1 / 1;
+  width: 400px;
+  height: 400px;
 
   object-fit: cover;
   object-position: center;
   align-self: center;
 
   border-radius: 50%;
-  background: url("@/assets/images/portrait_original.jpg") #EEEEFF 80% center / 150.638% 100% no-repeat;
-
-  transition: 200ms;
+  background-color: #EEEEFF;
+  transition: 0.2s;
 }
 
 .hero-text {
@@ -115,7 +124,7 @@ export default {
   flex-flow: column;
   justify-content: center;
   width: 35rem;
-  flex-shrink: 0;
+  flex-shrink: 1;
 }
 
 .hero-text h1 {

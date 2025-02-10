@@ -24,13 +24,13 @@
       <h1>Projects</h1>
       <div class="work-cards">
         <WorkCard :name="'Muse'"
-        :desc="'AI research project exploring music recommendation systems which use only CBF and multiple different features.'"
+        :desc="'AI research project exploring music recommendation systems which only use CBF and multiple musical and audio features.'"
         :svg_path="'muse.svg'"
         :url_name="'Discover'"
         :url="'https://muse.augustindirand.com/'"/>
 
         <WorkCard :name="'Portfolio'"
-        :desc="'An occasion to learn about Vue, explore my creativity, and showcase some of my previous work and experiences.'"
+        :desc="'An occasion to learn about Vue, to explore web design, and to showcase some of my previous work and experiences.'"
         :svg_path="'portfolio.svg'"
         :url_name="'Explore'"
         :url="'https://github.com/GusDrd/portfolio'"/>

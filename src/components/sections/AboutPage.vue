@@ -59,13 +59,9 @@
 <!-- ============ SCRIPTS ============ -->
 <script>
 import { website_stores } from '@/store/index.js'
-import InlineSvg from 'vue-inline-svg';
 
 export default {
   name: 'about-page',
-  components: {
-    InlineSvg
-  },
 
   data() {
     return {

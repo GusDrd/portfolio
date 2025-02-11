@@ -3,12 +3,43 @@
     <div class="navbar-container">
       <div class="navbar">
         <div class="tablet-bar" v-if="isTablet" :class="{'is-active': isSideView}">
-          <a href="#home"><h1>Augustin Dirand</h1></a>
+          <component
+            :is="isHomePage ? 'a' : 'RouterLink'" 
+            :href="isHomePage ? '#home' : null" 
+            :to="isHomePage ? null : '/#home'" 
+            class="nav-link"
+            v-smooth-scroll>
+            <h1>Augustin Dirand</h1>
+          </component>
           <div class="menu">
             <div class="menu-links">
-              <a href="#work" @click="toggleSideView" v-smooth-scroll>projects</a>
-              <a href="#about" @click="toggleSideView" v-smooth-scroll>about</a>
-              <a href="#journey" @click="toggleSideView" v-smooth-scroll>journey</a>
+              <component 
+                :is="isHomePage ? 'a' : 'RouterLink'" 
+                :href="isHomePage ? '#work' : null" 
+                :to="isHomePage ? null : '/#work'" 
+                class="nav-link"
+                @click="toggleSideView"
+                v-smooth-scroll>
+                projects
+              </component>
+              <component 
+                :is="isHomePage ? 'a' : 'RouterLink'" 
+                :href="isHomePage ? '#about' : null" 
+                :to="isHomePage ? null : '/#about'" 
+                class="nav-link"
+                @click="toggleSideView"
+                v-smooth-scroll>
+                about
+              </component>
+              <component 
+                :is="isHomePage ? 'a' : 'RouterLink'" 
+                :href="isHomePage ? '#journey' : null" 
+                :to="isHomePage ? null : '/#journey'" 
+                class="nav-link"
+                @click="toggleSideView"
+                v-smooth-scroll>
+                journey
+              </component>
               <div class="night-mode" :class="{ 'is-active': getDarkMode }" @click="toggleDarkMode(); toggleSideView();">
                 <InlineSvg :src="require('@/assets/icons/navbar/night.svg')" :class="{'night-icon': !getDarkMode, 'active-night-icon': getDarkMode}"></InlineSvg>
                 <InlineSvg :src="require('@/assets/icons/navbar/day.svg')" :class="{'day-icon': getDarkMode, 'active-day-icon': !getDarkMode}"></InlineSvg>
@@ -22,11 +53,43 @@
           </svg>
 
         </div>
-        <a href="#home" v-if="!isTablet"><h1>Augustin Dirand</h1></a>
+        <component
+          v-if="!isTablet"
+          :is="isHomePage ? 'a' : 'RouterLink'" 
+          :href="isHomePage ? '#home' : null" 
+          :to="isHomePage ? null : '/#home'" 
+          class="nav-link"
+          v-smooth-scroll>
+          <h1>Augustin Dirand</h1>
+        </component>
         <ul v-if="!isTablet">
-          <li><a href="#work" v-smooth-scroll>projects</a></li>
-          <li><a href="#about" v-smooth-scroll>about</a></li>
-          <li><a href="#journey" v-smooth-scroll>journey</a></li>
+          <li>
+            <component :is="isHomePage ? 'a' : 'RouterLink'" 
+              :href="isHomePage ? '#work' : null" 
+              :to="isHomePage ? null : '/#work'" 
+              class="nav-link"
+              v-smooth-scroll>
+              projects
+            </component>
+          </li>
+          <li>
+            <component :is="isHomePage ? 'a' : 'RouterLink'" 
+              :href="isHomePage ? '#about' : null" 
+              :to="isHomePage ? null : '/#about'"
+              class="nav-link" 
+              v-smooth-scroll>
+              about
+            </component>
+          </li>
+          <li>
+            <component :is="isHomePage ? 'a' : 'RouterLink'" 
+              :href="isHomePage ? '#journey' : null" 
+              :to="isHomePage ? null : '/#journey'" 
+              class="nav-link"
+              v-smooth-scroll>
+              journey
+            </component>
+          </li>
           <li><div class="night-mode" :class="{ 'is-active': getDarkMode }" @click="toggleDarkMode()">
             <InlineSvg :src="require('@/assets/icons/navbar/night.svg')" :class="{'night-icon': !getDarkMode, 'active-night-icon': getDarkMode}"></InlineSvg>
             <InlineSvg :src="require('@/assets/icons/navbar/day.svg')" :class="{'day-icon': getDarkMode, 'active-day-icon': !getDarkMode}"></InlineSvg>
@@ -41,13 +104,9 @@
 <!-- ============ SCRIPTS ============ -->
 <script>
 import { website_stores } from '@/store/index.js'
-import InlineSvg from 'vue-inline-svg';
 
 export default {
   name: 'nav-bar',
-  components: {
-    InlineSvg
-  },
 
   data() {
     return {
@@ -104,6 +163,9 @@ export default {
     },
     isTablet() {
       return website_stores().getTabletMode;
+    },
+    isHomePage() {
+      return this.$route.path === "/"; // Check if user is on the homepage
     }
   },
 
@@ -126,6 +188,7 @@ export default {
 
 .navbar-base {
   position: fixed;
+  z-index: 1;
   top: 0;
   left: 0;
   right: 0;
@@ -146,7 +209,7 @@ export default {
   background: white;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 
-  z-index: 1000;
+  z-index: 2;
 }
 .navbar-base.dark-mode.scrolling {
   background: #1b1b1e;
@@ -177,23 +240,24 @@ export default {
   align-self: stretch;
 }
 
-.navbar a {
+.navbar .nav-link {
   color: #505059;
   text-align: center;
   font-size: 1.25rem;
   text-decoration: none;
 
-  transition: 200ms;
-  -webkit-transition: 200ms;
+  cursor: pointer;
+
+  transition: 0.2s;
 }
-.navbar a:hover {
+.navbar .nav-link:hover {
   color: #5F5CFF;
 }
 
-.navbar-base.dark-mode a {
+.navbar-base.dark-mode .nav-link {
   color: #FFFFFF;
 }
-.navbar-base.dark-mode a:hover {
+.navbar-base.dark-mode .nav-link:hover {
   color: #8D8CFF;
 }
 
@@ -248,7 +312,7 @@ export default {
   display: flex;
   width: 42px;
   height: 32px;
-  z-index: 3;
+  z-index: 10;
 
   transition: 0.2s;
 }
@@ -272,12 +336,15 @@ export default {
   align-items: center;
   top: 0;
   right: 0;
-  z-index: 2;
+  z-index: 9;
 
   transform: translate(-100%, 0);
   transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0), background-color 0.5s;
 
   background: #F1F1F1;
+
+  backface-visibility: hidden;
+  will-change: transform, opacity;
 }
 .navbar-base.dark-mode .menu {
   background-color: #1b1b1e;
@@ -293,6 +360,7 @@ export default {
 
 .tablet-bar.is-active .menu {
   transform: translate(0, 0);
+  z-index: 5;
 }
 
 .tablet-bar .bar-1,

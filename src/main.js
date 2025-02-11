@@ -1,18 +1,55 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
+import { createRouter, createWebHistory, RouterLink, RouterView } from 'vue-router';
 
 import App from './App.vue'
-import VueSmoothScroll from 'v-smooth-scroll'
+import HomePage from './components/pages/HomePage.vue'
+import ChatPage from './components/pages/ChatPage.vue'
+import UnknownPage from './components/pages/UnknownPage.vue'
 
+import VueSmoothScroll from 'v-smooth-scroll'
+import InlineSvg from 'vue-inline-svg';
+
+
+const router = createRouter({
+    history: createWebHistory(), // Using HTML5 History mode
+    routes: [
+        { path: '/', component: HomePage },
+        { path: '/chat', component: ChatPage },
+        { path: '/:pathMatch(.*)*', component: UnknownPage }
+    ],
+    scrollBehavior(to, from) {
+        if (to.path === from.path) {
+            return false; // No scroll reset if staying on the same page
+        }
+        
+        if (to.hash) {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    const element = document.querySelector(to.hash);
+                    if (element) {
+                        const topOffset = element.getBoundingClientRect().top + window.scrollY - 64; // Adjust offset
+                        window.scrollTo({ top: topOffset, behavior: "smooth" });
+                    }
+                    resolve();
+                }, 100); // Small delay to ensure the page loads first
+            });
+        }
+
+        return { top: 0 };
+    }
+});
 
 const app = createApp(App)
 
-app.use(VueSmoothScroll, {
-    duration: 900
-})
-
+app.use(VueSmoothScroll, { duration: 900 })
 app.use(createPinia())
+app.use(router);
 
+// Register global components
+app.component('RouterLink', RouterLink).component('RouterView', RouterView).component('InlineSvg', InlineSvg)
+
+// Creates v-animate directive for elements to enter the screen smoothly
 app.directive("animate", {
     mounted(el, binding) {
         const animation = binding.value || "translateY(-20px)";
@@ -37,5 +74,6 @@ app.directive("animate", {
         observer.observe(el);
     },
 });
+
 
 app.mount('#app')

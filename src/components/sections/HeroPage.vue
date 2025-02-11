@@ -1,6 +1,5 @@
 <template>
   <div class="hero-page" id="home">
-    <NavBar />
     <div class="hero-content" :class="{'dark-mode': getDarkMode, 'tablet-view': isTablet}">
       <div class="hero-text">
         <h1>Hi !&nbsp;&nbsp;I'm <span>Gus</span></h1>
@@ -28,7 +27,7 @@
             </div>
           </transition>
         </div>
-        <a href="#about" class="hero-about" v-smooth-scroll>Learn more <InlineSvg :src="require('@/assets/icons/send.svg')" class="send"></InlineSvg></a>
+        <RouterLink :to="'/chat'" class="hero-about">Learn more <InlineSvg :src="require('@/assets/icons/send.svg')" class="send"></InlineSvg></RouterLink>
       </div>
       <img 
         srcset="
@@ -54,15 +53,10 @@
 <script>
 
 import { website_stores } from '@/store/index.js'
-import NavBar from '@/components/Navbar.vue'
 import { ref } from 'vue';
 
 export default {
   name: 'hero-page',
-
-  components: {
-    NavBar
-  },
 
   data() {
     return {

@@ -3,10 +3,16 @@
   <!-- ===== POPUP ===== -->
   <Popup />
 
-  <div class="main-page" :class="{'dark-mode': getDarkMode}">
+  <div class="main-page" :class="{'dark-mode': getDarkMode, 'tablet-view': isTablet}">
     <!-- ======================== -->
     <!-- ========= NAVBAR ========= -->
     <Navbar />
+
+    <div class="container">
+      <div class="content">
+        <h1>Chat with me</h1>
+      </div>
+    </div>
 
     
   </div>
@@ -55,6 +61,32 @@ export default {
 
 .main-page.dark-mode {
   background: #131316;
+}
+
+
+.container {
+  padding-top: 6rem;
+  width: 100vw;
+}
+
+.content {
+  display: flex;
+  padding-top: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  max-width: 64rem;
+  justify-content: space-between;
+}
+.main-page.tablet-view .content {
+  padding-left: 2rem;
+  padding-right: 2rem;
+  max-width: 35rem;
+
+  flex-direction: column;
 }
 
 </style>

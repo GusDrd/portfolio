@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
-import { createRouter, createWebHistory, RouterLink, RouterView } from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router';
 
 import App from './App.vue'
 import HomePage from './components/pages/HomePage.vue'
@@ -22,7 +22,7 @@ const router = createRouter({
         if (to.path === from.path) {
             return false; // No scroll reset if staying on the same page
         }
-        
+
         if (to.hash) {
             return new Promise((resolve) => {
                 setTimeout(() => {
@@ -42,12 +42,13 @@ const router = createRouter({
 
 const app = createApp(App)
 
+// App third-parties
 app.use(VueSmoothScroll, { duration: 900 })
 app.use(createPinia())
 app.use(router);
 
 // Register global components
-app.component('RouterLink', RouterLink).component('RouterView', RouterView).component('InlineSvg', InlineSvg)
+app.component('InlineSvg', InlineSvg)
 
 // Creates v-animate directive for elements to enter the screen smoothly
 app.directive("animate", {
@@ -75,5 +76,5 @@ app.directive("animate", {
     },
 });
 
-
+// Mount app
 app.mount('#app')

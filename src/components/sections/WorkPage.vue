@@ -59,6 +59,7 @@ export default {
   margin-right: auto;
 
   max-width: 64rem;
+  justify-content: space-between;
   flex-direction: column;
 }
 .work-page.tablet-view {

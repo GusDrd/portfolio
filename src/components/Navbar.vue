@@ -193,6 +193,8 @@ export default {
   left: 0;
   right: 0;
 
+  width: 100vw;
+
   transition: all 0.3s ease;
 }
 

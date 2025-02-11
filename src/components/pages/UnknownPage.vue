@@ -7,7 +7,6 @@
     <!-- ======================== -->
     <!-- ========= NAVBAR ========= -->
     <Navbar />
-
     
   </div>
 </template>
@@ -46,6 +45,7 @@ export default {
 .main-page {
   display: flex;
   flex-direction: column;
+  width: 100%;
   min-height: 100vh;
 
   background: linear-gradient(168deg, rgba(125, 232, 255, 0.07) 0%, rgba(127, 125, 255, 0.07) 25%, rgba(237, 125, 255, 0.07) 50%, rgba(127, 125, 255, 0.07) 75%, rgba(125, 232, 255, 0.07) 100%), #FFFDFA;
@@ -55,6 +55,25 @@ export default {
 
 .main-page.dark-mode {
   background: #131316;
+}
+
+
+.container {
+  display: flex;
+  padding-top: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  max-width: 64rem;
+  justify-content: space-between;
+}
+
+.content {
+  display: flex;
+  width: 100%;
 }
 
 </style>

@@ -1,5 +1,9 @@
 <template>
+
+  <Popup />
+
   <RouterView />
+
 </template>
 
 
@@ -7,9 +11,14 @@
 <script>
 
 import { website_stores } from '@/store/index.js'
+import Popup from '@/components/Popup.vue'
 
 export default {
   name: 'App',
+
+  components: {
+    Popup
+  },
 
   computed: {
     isTablet() {
@@ -57,6 +66,9 @@ export default {
 body {
   margin: 0;
   z-index: 0;
+
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
 </style>

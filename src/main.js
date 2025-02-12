@@ -28,7 +28,7 @@ const router = createRouter({
                 setTimeout(() => {
                     const element = document.querySelector(to.hash);
                     if (element) {
-                        const topOffset = element.getBoundingClientRect().top + window.scrollY - 64; // Adjust offset
+                        const topOffset = element.getBoundingClientRect().top + window.scrollY;
                         window.scrollTo({ top: topOffset, behavior: "smooth" });
                     }
                     resolve();

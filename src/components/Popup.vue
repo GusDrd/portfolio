@@ -16,14 +16,9 @@
 
 <!-- ============ SCRIPTS ============ -->
 <script>
-import InlineSvg from 'vue-inline-svg';
 
 export default {
   name: 'work-card',
-
-  components: {
-    InlineSvg
-  },
 
   data() {
     return {
@@ -51,8 +46,9 @@ export default {
 
 .popup {
   position: fixed;
+
   bottom: 1rem;
-  right: 1rem;
+  right: calc(2rem + (100% - 100vw));
   padding: 1rem;
   
   max-width: 24rem;

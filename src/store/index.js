@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 
 export const website_stores = defineStore('website_stores', {
   state: () => ({ 
-    isDarkMode: false,
+    isDarkMode: localStorage.getItem('isDarkMode') === 'true',
     isTablet: false
   }),
   getters: {
@@ -15,7 +15,8 @@ export const website_stores = defineStore('website_stores', {
   },
   actions: {
     setDarkMode() {
-      this.isDarkMode = !this.isDarkMode
+      this.isDarkMode = !this.isDarkMode;
+      localStorage.setItem('isDarkMode', this.isDarkMode);
     },
     setTabletMode(mode) {
       this.isTablet = mode;

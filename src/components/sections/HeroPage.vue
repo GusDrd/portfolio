@@ -27,7 +27,7 @@
             </div>
           </transition>
         </div>
-        <RouterLink :to="'/chat'" class="hero-about">Learn more <InlineSvg :src="require('@/assets/icons/send.svg')" class="send"></InlineSvg></RouterLink>
+        <RouterLink :to="'/chat'" class="hero-about">Chat with me! <InlineSvg :src="require('@/assets/icons/send.svg')" class="send"></InlineSvg></RouterLink>
       </div>
       <img 
         srcset="
@@ -260,6 +260,7 @@ export default {
 
   color: #FFFFFF;
   font-size: 1rem;
+  font-weight: 500;
   text-decoration: none;
 
   transition: 0.2s;

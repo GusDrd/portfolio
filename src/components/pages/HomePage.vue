@@ -1,7 +1,4 @@
 <template>
-  <!-- ============== -->
-  <!-- ===== POPUP ===== -->
-  <Popup />
 
   <div class="main-page" :class="{'dark-mode': getDarkMode}">
     <!-- ======================== -->
@@ -29,12 +26,12 @@
     <Footer />
 
   </div>
+
 </template>
 
 
 <!-- ============ SCRIPTS ============ -->
 <script>
-import Popup from '@/components/Popup.vue'
 import Navbar from '@/components/Navbar.vue'
 import Footer from '@/components/Footer.vue'
 import HeroPage from '@/components/sections/HeroPage.vue'
@@ -48,7 +45,6 @@ export default {
   name: 'App',
 
   components: {
-    Popup,
     Navbar,
     Footer,
     HeroPage,
@@ -76,7 +72,7 @@ export default {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  width: 100vw;
+  width: 100%;
 
   background: linear-gradient(168deg, rgba(125, 232, 255, 0.07) 0%, rgba(127, 125, 255, 0.07) 25%, rgba(237, 125, 255, 0.07) 50%, rgba(127, 125, 255, 0.07) 75%, rgba(125, 232, 255, 0.07) 100%), #FFFDFA;
 

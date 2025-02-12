@@ -40,6 +40,15 @@
                 v-smooth-scroll>
                 journey
               </component>
+              <component 
+                :is="isHomePage ? 'RouterLink' : 'a'" 
+                :href="isHomePage ? null : '#'" 
+                :to="isHomePage ? '/chat' : null" 
+                class="nav-link"
+                @click="toggleSideView"
+                v-smooth-scroll>
+                chat
+              </component>
               <div class="night-mode" :class="{ 'is-active': getDarkMode }" @click="toggleDarkMode(); toggleSideView();">
                 <InlineSvg :src="require('@/assets/icons/navbar/night.svg')" :class="{'night-icon': !getDarkMode, 'active-night-icon': getDarkMode}"></InlineSvg>
                 <InlineSvg :src="require('@/assets/icons/navbar/day.svg')" :class="{'day-icon': getDarkMode, 'active-day-icon': !getDarkMode}"></InlineSvg>
@@ -89,6 +98,14 @@
               v-smooth-scroll>
               journey
             </component>
+          </li>
+          <li>
+            <component 
+                :is="'RouterLink'"
+                :to="'/chat'" 
+                class="nav-link">
+                chat
+              </component>
           </li>
           <li><div class="night-mode" :class="{ 'is-active': getDarkMode }" @click="toggleDarkMode()">
             <InlineSvg :src="require('@/assets/icons/navbar/night.svg')" :class="{'night-icon': !getDarkMode, 'active-night-icon': getDarkMode}"></InlineSvg>
@@ -193,14 +210,14 @@ export default {
   left: 0;
   right: 0;
 
-  width: 100vw;
+  width: 100%;
 
   transition: all 0.3s ease;
 }
 
 .navbar-container {
   padding-left: 1rem;
-  padding-right: 1rem;
+  padding-right: calc(2rem + (100% - 100vw));
 
   margin-left: auto;
   margin-right: auto;

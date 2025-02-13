@@ -319,7 +319,7 @@ export default {
 }
 
 .hero-deco.slide-in img {
-  mask-position: 0% 0%;
+  mask-position: 0% 20%;
 }
 
 @media screen and (max-width: 800px) and (min-width: 100px) {

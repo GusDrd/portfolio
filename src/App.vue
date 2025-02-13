@@ -63,11 +63,11 @@ export default {
   -webkit-font-smoothing: antialiased;
 }
 
-body {
+html, body {
   margin: 0;
   z-index: 0;
 
-  min-height: 100vh;
+  min-height: 100dvh;
   overflow-x: hidden;
 }
 

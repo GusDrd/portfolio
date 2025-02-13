@@ -74,7 +74,8 @@ export default {
 .main-page {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100dvh;
+  z-index: 0;
 
   background: linear-gradient(168deg, rgba(125, 232, 255, 0.07) 0%, rgba(127, 125, 255, 0.07) 25%, rgba(237, 125, 255, 0.07) 50%, rgba(127, 125, 255, 0.07) 75%, rgba(125, 232, 255, 0.07) 100%), #FFFDFA;
 
@@ -89,7 +90,7 @@ export default {
 .container {
   display: flex;
   width: 100%;
-  height: calc(100vh - 4rem);
+  height: calc(100dvh - 4rem);
   
   padding-top: 4rem;
 }
@@ -136,6 +137,9 @@ export default {
 .main-page.dark-mode .chatbox-content h1 {
   color: #FFFFFF;
 }
+.main-page.tablet-view .chatbox-content h1 {
+  font-size: 2rem;
+}
 
 
 .chatbox {
@@ -158,7 +162,7 @@ export default {
 .chat {
   width: 100%;
   padding: .5rem .5rem;
-  margin: .5rem .5rem .5rem 1rem;
+  margin: 0 .5rem 0 1rem;
 }
 
 .chat textarea {
@@ -178,18 +182,21 @@ export default {
   border-radius: 5px;
   border: none;
 }
+.chat textarea:focus {
+  outline: none;
+}
 .main-page.dark-mode .chat textarea {
   color: #FFFFFF;
 }
-.chat textarea:focus {
-  outline: none;
+.main-page.tablet-view .chat textarea {
+  font-size: 1rem;
 }
 
 .send {
   display: flex;
   height: 2.5rem;
   width: 2.5rem;
-  margin: 1.25rem 1rem 0 0;
+  margin: 1rem 1rem auto 0;
 
   border: none;
   padding-block: 0;
@@ -210,6 +217,12 @@ export default {
 .main-page.dark-mode .send {
   background-color: #FFFFFF;
 }
+.main-page.tablet-view .send {
+  height: 2rem;
+  width: 2rem;
+  margin: 1rem 1rem 0 0;
+}
+
 .send:hover {
   opacity: 0.75;
 }

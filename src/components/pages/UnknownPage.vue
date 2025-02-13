@@ -67,7 +67,7 @@ export default {
   display: flex;
   flex-direction: column;
   width: 100%;
-  min-height: 100vh;
+  min-height: 100dvh;
 
   background: linear-gradient(168deg, rgba(125, 232, 255, 0.07) 0%, rgba(127, 125, 255, 0.07) 25%, rgba(237, 125, 255, 0.07) 50%, rgba(127, 125, 255, 0.07) 75%, rgba(125, 232, 255, 0.07) 100%), #FFFDFA;
 
@@ -83,7 +83,7 @@ export default {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: calc(100vh - 4rem);
+  height: calc(100dvh - 4rem);
   
   padding-top: 4rem;
 }
@@ -203,13 +203,19 @@ export default {
 }
 
 .hero-deco.slide-in img {
-  mask-position: 0% 0%;
+  mask-position: 0% 20%;
 }
 
 @media screen and (max-width: 800px) and (min-width: 100px) {
   .hero-deco img {
     height: 200px;
     object-fit: cover;
+  }
+}
+
+@media screen and (max-width: 500px) and (min-width: 100px) {
+  .oops {
+    margin-top: 4rem;
   }
 }
 

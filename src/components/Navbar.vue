@@ -150,9 +150,11 @@ export default {
     },
     disableScroll() {
       document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
     },
     enableScroll() {
       document.body.style.overflow = 'auto';
+      document.documentElement.style.overflow = 'auto';
     },
     handleScroll() {
       const currentScrollY = window.scrollY;
@@ -312,7 +314,7 @@ export default {
 
 .navbar-base.tablet-view .navbar-container{
   padding-left: 2rem;
-  padding-right: 2rem;
+  padding-right: calc(3rem + (100% - 100vw));
   max-width: 35rem;
 }
 
@@ -354,7 +356,7 @@ export default {
   justify-content: center;
   align-items: center;
   top: 0;
-  right: 0;
+  left: 0;
   z-index: 9;
 
   transform: translate(-100%, 0);
@@ -362,7 +364,6 @@ export default {
 
   background: #F1F1F1;
 
-  backface-visibility: hidden;
   will-change: transform, opacity;
 }
 .navbar-base.dark-mode .menu {

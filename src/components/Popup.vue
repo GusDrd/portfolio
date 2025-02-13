@@ -1,6 +1,6 @@
 <template>
   <transition name="popup">
-    <div v-if="showPopup" class="popup">
+    <div v-if="showPopup" class="popup" :class="{'tablet-view': isTablet}">
       <div class="popup-content">
         <span>🦋</span>
         <div class="popup-text">
@@ -16,6 +16,7 @@
 
 <!-- ============ SCRIPTS ============ -->
 <script>
+import { website_stores } from '@/store/index.js'
 
 export default {
   name: 'work-card',
@@ -29,6 +30,12 @@ export default {
   methods: {
     closePopup() {
       this.showPopup = false;
+    }
+  },
+
+  computed: {
+    isTablet() {
+      return website_stores().getTabletMode;
     }
   },
   
@@ -59,6 +66,9 @@ export default {
   background-color: white;
 
   z-index: 5;
+}
+.popup.tablet-view {
+  margin-left: calc(2rem + (100% - 100vw));
 }
 
 .popup-content {

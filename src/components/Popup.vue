@@ -7,7 +7,7 @@
           <p>The website is evolving so things might change. Don't worry, it'll soon reach its final form !</p>
           <button @click="closePopup">Understood !</button> 
         </div>
-        <button @click="closePopup" class="popup-x"><InlineSvg :src="require('@/assets/icons/close.svg')" /></button>
+        <button @click="closePopup" class="popup-x" aria-label="Close popup">Close<InlineSvg :src="require('@/assets/icons/close.svg')" /></button>
       </div>
     </div>
   </transition>
@@ -114,6 +114,7 @@ export default {
   display: flex;
   justify-content: flex-start;
   margin-left: .5rem;
+  font-size: 0;
 
   width: 1.25rem;
   height: 1.25rem;

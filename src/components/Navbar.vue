@@ -41,9 +41,8 @@
                 journey
               </component>
               <component 
-                :is="isHomePage ? 'RouterLink' : 'a'" 
-                :href="isHomePage ? null : '#'" 
-                :to="isHomePage ? '/chat' : null" 
+                :is="'RouterLink'"
+                :to="'/chat'" 
                 class="nav-link"
                 @click="toggleSideView"
                 v-smooth-scroll>

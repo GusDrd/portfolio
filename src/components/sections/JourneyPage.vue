@@ -13,7 +13,7 @@
         ></TimelineEvent>
         <TimelineEvent
           :year="'2024'"
-          :title="'AI Trainer'"
+          :title="'Data Scientist'"
           :location="'DataAnnotation, NYC'"
           :desc="'Fine-tuning of multiple NLP multi-agent systems for data analysis tasks.'"
           :size="'normal'"

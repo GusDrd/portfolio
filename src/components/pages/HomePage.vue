@@ -1,5 +1,7 @@
 <template>
 
+  <Popup />
+
   <div class="main-page" :class="{'dark-mode': getDarkMode}">
     <!-- ======================== -->
     <!-- ========= NAVBAR ========= -->
@@ -38,6 +40,7 @@ import HeroPage from '@/components/sections/HeroPage.vue'
 import WorkPage from '@/components/sections/WorkPage.vue'
 import AboutPage from '@/components/sections/AboutPage.vue'
 import JourneyPage from '@/components/sections/JourneyPage.vue'
+import Popup from '@/components/Popup.vue'
 
 import { website_stores } from '@/store/index.js'
 
@@ -50,7 +53,8 @@ export default {
     HeroPage,
     WorkPage,
     AboutPage,
-    JourneyPage
+    JourneyPage,
+    Popup
   },
 
   computed: {

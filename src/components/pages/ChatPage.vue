@@ -6,17 +6,34 @@
     <Navbar />
 
     <div class="container">
-      <div class="content">
-        <div class="display">
-          <!-- Display area, will be hidden for first message and pops as soon as first message is sent -->
-        </div>
-        <div class="chatbox-content">
-          <h1>How can I help you ?</h1>
-          <form class="chatbox">
-            <div class="chat">
-              <textarea disabled=true placeholder="Guz is still in the making..." rows=1 v-model="message" @input="autoResize" ref="textarea"></textarea>
+      <div class="content" :style="{ 'justify-content': questionAnswered ? 'space-between' : 'center' }">
+        <div class="display" ref="display">
+          <!-- User Display -->
+          <div v-if="sentMessages.length > 0" class="user-display-area">
+            <div v-for="(msg, index) in sentMessages" :key="index" class="user-display">
+              <p v-html="msg"></p>
             </div>
-            <button class="send">
+          </div>
+        </div>
+        <div class="chatbox-content" :style="{ 'margin-bottom': questionAnswered ? '2rem' : '8rem' }">
+          <h1 v-if="!questionAnswered">How can I help you ?</h1>
+          <form class="chatbox" @submit.prevent="sendMessage">
+            <div class="chat">
+              <textarea 
+                placeholder="Message guz..." 
+                rows=1 
+                v-model="message" 
+                @input="autoResize" 
+                @keydown.enter="handleEnterPress" 
+                ref="textarea">
+              </textarea>
+            </div>
+            <button 
+              class="send" 
+              @click="sendMessage" 
+              :disabled="!message.trim()" 
+              :class="{'disabled': !message.trim()}"
+            >
               <InlineSvg :src="require('@/assets/icons/send.svg')" class="send-icon"></InlineSvg>
             </button>
           </form>
@@ -44,7 +61,9 @@ export default {
 
   data() {
     return {
-      message: ''
+      message: "",
+      questionAnswered: false,
+      sentMessages: []  // Array to store messages sent
     };
   },
 
@@ -62,6 +81,32 @@ export default {
       const textarea = this.$refs.textarea;
       textarea.style.height = `auto`;
       textarea.style.height = `${textarea.scrollHeight}px`;
+    },
+    handleEnterPress(event) {
+      if (!event.shiftKey && !this.isTablet) {
+        event.preventDefault();  // Prevent newline creation
+        this.sendMessage();  // Send the message
+      }
+    },
+    sendMessage() {
+      if (!this.message.trim()) return;
+      this.questionAnswered = true;
+
+      const formattedMessage = this.message.replace(/\n/g, '<br>');
+      this.sentMessages.push(formattedMessage);
+
+      // Clear textarea
+      this.message = "";
+
+      // Resize chatbox
+      const textarea = this.$refs.textarea;
+      textarea.style.height = 'auto';
+
+      // Resize chatbox
+      this.$nextTick(() => {
+        const displayArea = this.$refs.display;
+        displayArea.scrollTop = displayArea.scrollHeight;
+      });
     }
   }
 }
@@ -109,6 +154,7 @@ export default {
 
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 .main-page.tablet-view .content {
   padding-left: 2rem;
@@ -116,11 +162,61 @@ export default {
   max-width: 35rem;
 }
 
-.chatbox-content {
+
+/* -------------------------------------- */
+/* ------------ Display Area ------------ */
+.display {
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-gutter: stable;
+
+  padding-right: .5rem;
+}
+.display::-webkit-scrollbar {
+    width: 4px;
+}
+.display::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+
+.user-display-area {
   display: flex;
   width: 100%;
 
-  margin-bottom: 8rem;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.user-display {
+  max-width: 32rem;
+  margin: 1rem 0;
+  padding: 1rem 1.25rem;
+
+  border-radius: 30px;
+  background-color: #FFFFFF;
+}
+.main-page.dark-mode .user-display {
+  background-color: #1b1b1e;
+}
+
+.user-display p {
+  margin: 0;
+  word-wrap: break-word;
+}
+.main-page.dark-mode .display p {
+  color: #FFFFFF;
+}
+
+
+/* -------------------------------------- */
+/* ------------ Main Chatbox ------------ */
+.chatbox-content {
+  display: flex;
+  width: 100%;
 
   flex-direction: column;
 }
@@ -173,10 +269,12 @@ export default {
   font-family: "Red Hat Display", Helvetica, Arial, sans-serif;
   font-size: 1.25rem;
 
+  max-height: 16rem;
+  overflow-y: auto;
+
   background-color: transparent;
   box-sizing: border-box;
   resize: none;
-  overflow: hidden;
 
   padding: 10px;
   border-radius: 5px;
@@ -192,11 +290,14 @@ export default {
   font-size: 1rem;
 }
 
+
+/* ------------------------------------- */
+/* ------------ Send Button ------------ */
 .send {
   display: flex;
   height: 2.5rem;
   width: 2.5rem;
-  margin: 1rem 1rem auto 0;
+  margin: .825rem 1rem auto 0;
 
   border: none;
   padding-block: 0;
@@ -227,6 +328,10 @@ export default {
   opacity: 0.75;
 }
 .main-page.dark-mode .send:hover {
+  opacity: 0.75;
+}
+
+.send:disabled {
   opacity: 0.75;
 }
 

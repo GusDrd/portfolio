@@ -19,6 +19,14 @@
         :url="'https://github.com/GusDrd/portfolio'"
       ></WorkCard>
 
+      <WorkCard 
+        :name="'Guz'"
+        :desc="'My personal chatbot assistant, a multi-agent system making use of RAG, made with LangGraph and deployed using FastAPI.'"
+        :svg_path="'chatbot.svg'"
+        :url_name="'Try out'"
+        :url="'https://augustindirand.com/chat'"
+      ></WorkCard>
+
     </div>
   </div>
 </template>

@@ -7,14 +7,20 @@
 
     <div class="container">
       <div class="content" :style="{ 'justify-content': questionAnswered ? 'space-between' : 'center' }">
+
+        <!-- Display Area -->
         <div class="display" ref="display">
-          <!-- User Display -->
-          <div v-if="sentMessages.length > 0" class="user-display-area">
-            <div v-for="(msg, index) in sentMessages" :key="index" class="user-display">
-              <p v-html="msg"></p>
+          <div v-if="chatMessages.length > 0" class="chat-area">
+            <div v-for="(msg, index) in chatMessages" 
+              :key="index" 
+              :class="{'user-display': msg.isUser, 'chatbot-display': !msg.isUser}"
+            >
+              <div v-html="convertMarkdown(msg.text)"></div>
             </div>
           </div>
         </div>
+
+        <!-- Chatbox Area -->
         <div class="chatbox-content" :style="{ 'margin-bottom': questionAnswered ? '2rem' : '8rem' }">
           <h1 v-if="!questionAnswered">How can I help you ?</h1>
           <form class="chatbox" @submit.prevent="sendMessage">
@@ -38,6 +44,7 @@
             </button>
           </form>
         </div>
+
       </div>
     </div>
     
@@ -51,6 +58,7 @@
 import Navbar from '@/components/Navbar.vue'
 
 import { website_stores } from '@/store/index.js'
+import { marked } from 'marked';
 
 export default {
   name: 'App',
@@ -63,8 +71,24 @@ export default {
     return {
       message: "",
       questionAnswered: false,
-      sentMessages: []  // Array to store messages sent
+      chatMessages: [],
+      user_id: this.generateUserId(),
+      token: null,
+      tokenExpiry: null
     };
+  },
+
+  created() {
+    this.fetchToken(); // Get token on component creation
+    setInterval(this.checkTokenExpiry, 60000); // Check token every minute
+
+    // Cleanup when page is closing or reloading
+    window.addEventListener("beforeunload", this.cleanupConversation);
+  },
+
+  unmounted() {
+    // Cleanup when component destroyed
+    window.removeEventListener("beforeunload", this.cleanupConversation);
   },
 
   computed: {
@@ -77,36 +101,107 @@ export default {
   },
 
   methods: {
+    generateUserId() {
+      return "user_" + Math.random().toString(36).substr(2, 9);
+    },
+
+    async fetchToken() {
+      try {
+        const response = await fetch("https://api.augustindirand.com/guz/session/", {
+          method: "POST",
+        });
+        const data = await response.json();
+        this.token = data.token;
+        this.tokenExpiry = Date.now() + 10 * 60 * 1000; // 10 minutes expiry
+      } catch (error) {
+        console.error("Error fetching token:", error);
+      }
+    },
+    checkTokenExpiry() {
+      // Refresh 1 min before expiry
+      if (!this.token || Date.now() >= this.tokenExpiry - 60000) {
+        this.fetchToken();
+      }
+    },
+
+    async getBotResponse(userQuery) {
+      try {
+        const response = await fetch("https://api.augustindirand.com/guz/chat/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Token": this.token,
+          },
+          body: JSON.stringify({
+            user_id: this.user_id,
+            query: userQuery,
+          }),
+        });
+
+        const data = await response.json();
+        return data.response || "Sorry, something went wrong!";
+      } catch (error) {
+        console.error("Chatbot request failed:", error);
+        return "Oops! I couldn't connect to the server.";
+      }
+    },
+
+    async cleanupConversation() {
+      try {
+        await fetch(`https://api.augustindirand.com/guz/chat/${this.user_id}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            "Token": this.token,
+          }
+        });
+        console.log("Conversation cleared successfully.");
+      } catch (error) {
+        console.error("Failed to clear conversation:", error);
+      }
+    },
+
+    async sendMessage() {
+      if (!this.message.trim()) return;
+      this.questionAnswered = true;
+
+      // Push user message
+      const formattedMessage = this.message.replace(/\n/g, '<br>');
+      this.chatMessages.push({ text: formattedMessage, isUser: true });
+
+      // Update textarea
+      this.message = "";
+      this.$refs.textarea.style.height = 'auto';
+      this.scrollDown();
+
+      // Send request to chatbot API
+      const botResponse = await this.getBotResponse(formattedMessage);
+      this.chatMessages.push({ text: botResponse, isUser: false });
+      this.scrollDown();
+    },
+
+    scrollDown() {
+      this.$nextTick(() => {
+        const displayArea = this.$refs.display;
+        displayArea.scrollTop = displayArea.scrollHeight;
+      });
+    },
+
     autoResize() {
       const textarea = this.$refs.textarea;
       textarea.style.height = `auto`;
       textarea.style.height = `${textarea.scrollHeight}px`;
     },
+
     handleEnterPress(event) {
       if (!event.shiftKey && !this.isTablet) {
-        event.preventDefault();  // Prevent newline creation
-        this.sendMessage();  // Send the message
+        event.preventDefault(); // Prevent newline creation
+        this.sendMessage();     // Send message
       }
     },
-    sendMessage() {
-      if (!this.message.trim()) return;
-      this.questionAnswered = true;
 
-      const formattedMessage = this.message.replace(/\n/g, '<br>');
-      this.sentMessages.push(formattedMessage);
-
-      // Clear textarea
-      this.message = "";
-
-      // Resize chatbox
-      const textarea = this.$refs.textarea;
-      textarea.style.height = 'auto';
-
-      // Resize chatbox
-      this.$nextTick(() => {
-        const displayArea = this.$refs.display;
-        displayArea.scrollTop = displayArea.scrollHeight;
-      });
+    convertMarkdown(text) {
+      return marked(text);
     }
   }
 }
@@ -181,10 +276,26 @@ export default {
     border-radius: 10px;
 }
 
+.display {
+  margin: 0;
+  font-size: 1.125rem;
+  color: #131316;
+  word-wrap: break-word;
+}
+.main-page.dark-mode .display {
+  color: #FFFFFF;
+}
 
-.user-display-area {
+.display * {
+  margin: 0;
+}
+
+
+.chat-area {
   display: flex;
   width: 100%;
+
+  margin-bottom: 2rem;
 
   flex-direction: column;
   justify-content: flex-end;
@@ -198,19 +309,16 @@ export default {
 
   border-radius: 30px;
   background-color: #FFFFFF;
+
+  transition: 0.5s ease;
 }
 .main-page.dark-mode .user-display {
   background-color: #1b1b1e;
 }
 
-.user-display p {
-  margin: 0;
-  word-wrap: break-word;
+.chatbot-display {
+  align-self: flex-start;
 }
-.main-page.dark-mode .display p {
-  color: #FFFFFF;
-}
-
 
 /* -------------------------------------- */
 /* ------------ Main Chatbox ------------ */
@@ -327,12 +435,8 @@ export default {
 .send:hover {
   opacity: 0.75;
 }
-.main-page.dark-mode .send:hover {
-  opacity: 0.75;
-}
-
 .send:disabled {
-  opacity: 0.75;
+  opacity: 0.625;
 }
 
 .send-icon {

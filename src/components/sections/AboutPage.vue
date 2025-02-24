@@ -73,7 +73,7 @@ export default {
         },
         {
           name: "Frameworks",
-          iconNames: ["Pytorch", "Flask", "Vue", "LangChain"]
+          iconNames: ["PyTorch", "FastAPI", "Flask", "LangChain", "Vue"]
         },
         {
           name: "Libraries",
@@ -89,7 +89,7 @@ export default {
         },
         {
           name: "Interests",
-          iconNames: ["Design", "Music", "Astronomy", "Games", "Freefall"]
+          iconNames: ["Tech", "Design", "Music", "Astronomy", "Games", "Freefall"]
         }
       ]
     }

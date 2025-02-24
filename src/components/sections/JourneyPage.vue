@@ -20,14 +20,14 @@
         ></TimelineEvent>
         <TimelineEvent
           :year="'2023'"
-          :title="'AI Masters'"
+          :title="'AI Master\'s'"
           :location="'QMUL, London'"
           :desc="'MSc degree in Artificial Intelligence obtained with Distinction. (GPA: 4)'"
           :size="'medium'"
         ></TimelineEvent>
         <TimelineEvent
           :year="'2022'"
-          :title="'Robotics Bachelor'"
+          :title="'Robotics Bachelor\'s'"
           :location="'QMUL, London'"
           :desc="'BEng degree in Robotics obtained with First-Class Honours. (GPA: 4)'"
           :size="'medium'"

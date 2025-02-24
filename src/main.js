@@ -45,7 +45,7 @@ const app = createApp(App)
 // App third-parties
 app.use(VueSmoothScroll, { duration: 900 })
 app.use(createPinia())
-app.use(router);
+app.use(router)
 
 // Register global components
 app.component('InlineSvg', InlineSvg)

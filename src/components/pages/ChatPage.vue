@@ -71,6 +71,7 @@ export default {
     return {
       message: "",
       questionAnswered: false,
+      isProcessing: false,
       chatMessages: [],
       user_id: this.generateUserId(),
       token: null,
@@ -84,6 +85,12 @@ export default {
 
     // Cleanup when page is closing or reloading
     window.addEventListener("beforeunload", this.cleanupConversation);
+  },
+
+  beforeRouteLeave(to, from, next) {
+    // Cleanup when navigating away to another page
+    this.cleanupConversation();
+    next(); // Proceed with route navigation
   },
 
   unmounted() {
@@ -107,7 +114,7 @@ export default {
 
     async fetchToken() {
       try {
-        const response = await fetch("https://api.augustindirand.com/guz/session/", {
+        const response = await fetch("https://api.augustindirand.com/guz/session", {
           method: "POST",
         });
         const data = await response.json();
@@ -126,7 +133,7 @@ export default {
 
     async getBotResponse(userQuery) {
       try {
-        const response = await fetch("https://api.augustindirand.com/guz/chat/", {
+        const response = await fetch("https://api.augustindirand.com/guz/chat", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -155,14 +162,14 @@ export default {
             "Token": this.token,
           }
         });
-        console.log("Conversation cleared successfully.");
       } catch (error) {
         console.error("Failed to clear conversation:", error);
       }
     },
 
     async sendMessage() {
-      if (!this.message.trim()) return;
+      if (!this.message.trim() || this.isProcessing) return;
+      this.isProcessing = true;
       this.questionAnswered = true;
 
       // Push user message
@@ -177,6 +184,8 @@ export default {
       // Send request to chatbot API
       const botResponse = await this.getBotResponse(formattedMessage);
       this.chatMessages.push({ text: botResponse, isUser: false });
+      
+      this.isProcessing = false;
       this.scrollDown();
     },
 
@@ -313,7 +322,7 @@ export default {
   transition: 0.5s ease;
 }
 .main-page.dark-mode .user-display {
-  background-color: #1b1b1e;
+  background-color: #2b2b2b;
 }
 
 .chatbot-display {

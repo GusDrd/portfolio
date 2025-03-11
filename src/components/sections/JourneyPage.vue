@@ -59,7 +59,7 @@ export default {
   mounted() {
     setTimeout(() => {
       this.adjustLineHeight();
-    }, 100);
+    }, 200);
     window.addEventListener('resize', this.adjustLineHeight);
   },
   beforeUnmount() {
